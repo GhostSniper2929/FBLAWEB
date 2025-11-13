@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LUNEX | Login / Signup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;500&display=swap");
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: radial-gradient(circle at top, #020617, #000);
+        margin: 0;
+        overflow: hidden;
+        color: white;
+        height: 100vh;
+      }
+
+      .orbitron {
+        font-family: "Orbitron", sans-serif;
+      }
+
+      .glass {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(14px);
+        border-radius: 20px;
+        transition: all 0.4s ease;
+      }
+
+      .glass:hover {
+        box-shadow: 0 0 25px rgba(99, 102, 241, 0.4);
+      }
+
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.2;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      .star {
+        position: absolute;
+        background: white;
+        border-radius: 50%;
+        animation: twinkle var(--duration) infinite ease-in-out;
+      }
+
+      /* Layout */
+      .container {
+        display: flex;
+        height: 100vh;
+      }
+
+      .info-section {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+      }
+
+      .auth-section {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        left: 100px;
+        align-items: center;
+        padding: 2rem;
+      }
+
+      .auth-box {
+        width: 100%;
+        max-width: 400px;
+      }
+
+      h1,
+      h2,
+      p {
+        margin: 0.5rem 0;
+      }
+      #myVideo {
+        position: fixed;
+        right: 0;
+        bottom: -80px;
+        min-width: 100%;
+        min-height: 100%;
+      }
+
+      /* Add some content at the bottom of the video/page */
+      .content {
+        position: fixed;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        color: #f1f1f1;
+        width: 100%;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Star Background -->
+    <div id="stars" class="fixed inset-0 -z-10"></div>
+    <img
+      autoplay
+      muted
+      loop
+      id="myVideo"
+      src="https://www.spacex.com/assets/images/human-spaceflight/mars/mars_hero_d.jpg"
+      alt="Mars Hero Image"
+    />
+
+    <div class="container">
+      <!-- Website Info -->
+      <div class="info-section text-center">
+        <h1 class="orbitron text-5xl mb-4">AstroQuest</h1>
+        <p class="text-gray-300 mb-4">
+          Explore the universe of learning! Connect, share, and grow your
+          knowledge with our community.
+        </p>
+        <p class="text-gray-400">Join us today and embark on your journey!</p>
+      </div>
+
+      <!-- Auth Box -->
+      <div class="auth-section">
+        <div id="auth-container" class="auth-box glass p-6">
+          <!-- Login Form -->
+          <form id="login-form">
+            <h2 class="text-white text-2xl mb-4">Login</h2>
+            <input
+              type="email"
+              placeholder="Email"
+              class="w-full p-2 mb-4 rounded"
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              class="w-full p-2 mb-4 rounded"
+            />
+            <button
+              type="submit"
+              class="w-full p-2 bg-blue-600 rounded text-white"
+            >
+              Login
+            </button>
+            <p class="text-gray-400 mt-4 text-center">
+              Don't have an account?
+              <span id="show-signup" class="text-blue-400 cursor-pointer"
+                >Sign up</span
+              >
+            </p>
+          </form>
+
+          <!-- Signup Form -->
+          <form id="signup-form" class="hidden">
+            <h2 class="text-white text-2xl mb-4">Sign Up</h2>
+            <input
+              type="text"
+              placeholder="Name"
+              class="w-full p-2 mb-4 rounded"
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              class="w-full p-2 mb-4 rounded"
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              class="w-full p-2 mb-4 rounded"
+            />
+            <button
+              type="submit"
+              class="w-full p-2 bg-green-600 rounded text-white"
+            >
+              Sign Up
+            </button>
+            <p class="text-gray-400 mt-4 text-center">
+              Already have an account?
+              <span id="show-login" class="text-blue-400 cursor-pointer"
+                >Login</span
+              >
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const loginForm = document.getElementById("login-form");
+      const signupForm = document.getElementById("signup-form");
+      const showSignup = document.getElementById("show-signup");
+      const showLogin = document.getElementById("show-login");
+
+      showSignup.addEventListener("click", () => {
+        loginForm.classList.add("hidden");
+        signupForm.classList.remove("hidden");
+      });
+
+      showLogin.addEventListener("click", () => {
+        signupForm.classList.add("hidden");
+        loginForm.classList.remove("hidden");
+      });
+
+      // Starry Background
+      const starsContainer = document.getElementById("stars");
+      const starCount = 100;
+
+      for (let i = 0; i < starCount; i++) {
+        const star = document.createElement("div");
+        star.classList.add("star");
+        star.style.width = `${Math.random() * 2 + 1}px`;
+        star.style.height = star.style.width;
+        star.style.top = `${Math.random() * window.innerHeight}px`;
+        star.style.left = `${Math.random() * window.innerWidth}px`;
+        star.style.setProperty("--duration", `${Math.random() * 3 + 2}s`);
+        starsContainer.appendChild(star);
+      }
+    </script>
+  </body>
+</html>
