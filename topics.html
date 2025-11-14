@@ -18,6 +18,7 @@
       .topic-card:hover { background: rgba(255, 255, 255, 0.08); transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0, 150, 255, 0.3); }
       .topic-content { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.1); }
       .topic-card.active .topic-content { display: block; }
+      .topic-image { width: 200px; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; float: right; margin-left: 1rem; }
     </style>
   </head>
   <body>
@@ -46,6 +47,7 @@
     </header>
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div class="topic-card" onclick="this.classList.toggle('active')">
+        <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=800" alt="Solar System Formation" class="topic-image" />
         <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-globe mr-2"></i>Solar System Formation</h2>
         <p class="text-gray-300">Learn how our solar system formed 4.6 billion years ago</p>
         <div class="topic-content">
@@ -54,6 +56,7 @@
         </div>
       </div>
       <div class="topic-card" onclick="this.classList.toggle('active')">
+        <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800" alt="Life Cycle of Stars" class="topic-image" />
         <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-star mr-2"></i>Life Cycle of Stars</h2>
         <p class="text-gray-300">Understand how stars are born, live, and die</p>
         <div class="topic-content">
@@ -62,6 +65,7 @@
         </div>
       </div>
       <div class="topic-card" onclick="this.classList.toggle('active')">
+        <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=800" alt="Black Holes" class="topic-image" />
         <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-circle-notch mr-2"></i>Black Holes and Relativity</h2>
         <p class="text-gray-300">Explore the mysteries of black holes and Einstein's theories</p>
         <div class="topic-content">
@@ -70,6 +74,7 @@
         </div>
       </div>
       <div class="topic-card" onclick="this.classList.toggle('active')">
+        <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=800" alt="Exoplanets" class="topic-image" />
         <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-meteor mr-2"></i>Exoplanets and Habitability</h2>
         <p class="text-gray-300">Discover planets beyond our solar system</p>
         <div class="topic-content">
@@ -78,6 +83,7 @@
         </div>
       </div>
       <div class="topic-card" onclick="this.classList.toggle('active')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/The_Blue_Marble_%28remastered%29.jpg/800px-The_Blue_Marble_%28remastered%29.jpg" alt="Earth-Moon System" class="topic-image" />
         <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-moon mr-2"></i>Earth-Moon System</h2>
         <p class="text-gray-300">Learn about Earth's relationship with the Moon</p>
         <div class="topic-content">
@@ -86,6 +92,7 @@
         </div>
       </div>
       <div class="topic-card" onclick="this.classList.toggle('active')">
+        <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=800" alt="Space Exploration" class="topic-image" />
         <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-satellite mr-2"></i>Space Exploration and Technology</h2>
         <p class="text-gray-300">Explore space missions and technology</p>
         <div class="topic-content">
