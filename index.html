@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LUNEX</title>
+    <title>AstroLearn - Astronomy Student Learning Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
@@ -59,40 +59,17 @@
       }
 
       .hero-gradient {
-        background: transparent;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.8) 0%,
+          rgba(0, 0, 0, 0.2) 10%
+        );
 
         top: 100px;
         bottom: 100px;
         left: 0;
         width: 100%;
         height: 1000%;
-      }
-
-      /* Parallax connector */
-      #hero-bg {
-        will-change: transform;
-        transform-origin: center;
-        transition: transform 0.12s linear;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      #hero-wave {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 120px;
-        pointer-events: none;
-        transform: translateZ(0);
-        will-change: transform, opacity;
-      }
-
-      /* subtle blur to blend hero and content */
-      #hero-wave path {
-        filter: blur(6px);
-        opacity: 0.22;
       }
 
       .section-card {
@@ -153,6 +130,13 @@
         pointer-events: none;
       }
 
+      .star {
+        position: absolute;
+        background-color: #fff;
+        border-radius: 50%;
+        animation: twinkle var(--duration) infinite ease-in-out;
+      }
+
       @keyframes twinkle {
         0%,
         100% {
@@ -177,41 +161,13 @@
         }
       }
     </style>
-    <style>
-      /* SPACE TRANSITION OVERLAY */
-      .page-transition {
-        position: fixed;
-        inset: 0;
-        background: radial-gradient(
-            circle at center,
-            rgba(255, 255, 255, 0.5) 1px,
-            transparent 2px
-          ),
-          radial-gradient(
-            circle at center,
-            rgba(255, 255, 255, 0.3) 1px,
-            transparent 2px
-          ),
-          black;
-        background-size: 3px 3px, 2px 2px, cover;
-        opacity: 0;
-        pointer-events: none;
-        z-index: 9999;
-        transition: opacity 0.5s ease;
-      }
-
-      .page-transition.active {
-        opacity: 1;
-        pointer-events: auto;
-      }
-    </style>
   </head>
   <body>
     <!-- Stars Background -->
     <div class="stars" id="stars">
       <video autoplay muted loop id="myVideo">
         <source
-          src="https://cdn.pixabay.com/video/2023/06/21/168193-838481303_large.mp4"
+          src="https://cdn.pixabay.com/video/2023/12/02/191683-890894275_large.mp4"
           type="video/mp4"
         />
       </video>
@@ -241,41 +197,43 @@
 -->
     <!-- Navigation -->
     <nav
-      class="fixed w-full z-50 bg-transparent bg-opacity-30 backdrop-filter backdrop-blur-lg border-b border-transparent border-opacity-30 transition duration-300"
+      class="fixed w-full z-50 bg-transparent bg-opacity-30 backdrop-filter backdrop-blur-lg border-b border-gray-800"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16 items-center">
           <div class="flex items-center">
             <div class="flex-shrink-0">
-              <span class="orbitron text-2xl font-bold text-white">LUNEX</span>
+              <a href="/" class="orbitron text-2xl font-bold text-white"
+                >ASTROLEARN</a
+              >
             </div>
           </div>
           <div class="hidden md:block">
             <div class="ml-10 flex items-baseline space-x-8">
               <a
-                href="#"
+                href="/planets.html"
+                class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300"
+                >PLANETS</a
+              >
+              <a
+                href="/constellations.html"
+                class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300"
+                >CONSTELLATIONS</a
+              >
+              <a
+                href="/missions.html"
                 class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300"
                 >MISSIONS</a
               >
               <a
-                href="#"
+                href="/quizzes.html"
                 class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300"
-                >LAUNCHES</a
+                >QUIZZES</a
               >
               <a
-                href="#"
+                href="/auth.html"
                 class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300"
-                >STARSHIP</a
-              >
-              <a
-                href="#"
-                class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300"
-                >STARLINK</a
-              >
-              <a
-                href="signup.html"
-                class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300"
-                >REGISTER NOW</a
+                >SIGN IN</a
               >
             </div>
           </div>
@@ -289,20 +247,30 @@
       <!-- Mobile menu -->
       <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-95">
         <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          <a href="#" class="text-white block px-3 py-2 text-base font-medium"
+          <a
+            href="/planets.html"
+            class="text-white block px-3 py-2 text-base font-medium"
+            >PLANETS</a
+          >
+          <a
+            href="/constellations.html"
+            class="text-white block px-3 py-2 text-base font-medium"
+            >CONSTELLATIONS</a
+          >
+          <a
+            href="/missions.html"
+            class="text-white block px-3 py-2 text-base font-medium"
             >MISSIONS</a
           >
-          <a href="#" class="text-white block px-3 py-2 text-base font-medium"
-            >LAUNCHES</a
+          <a
+            href="/quizzes.html"
+            class="text-white block px-3 py-2 text-base font-medium"
+            >QUIZZES</a
           >
-          <a href="#" class="text-white block px-3 py-2 text-base font-medium"
-            >STARSHIP</a
-          >
-          <a href="#" class="text-white block px-3 py-2 text-base font-medium"
-            >STARLINK</a
-          >
-          <a href="#" class="text-white block px-3 py-2 text-base font-medium"
-            >ABOUT</a
+          <a
+            href="/auth.html"
+            class="text-white block px-3 py-2 text-base font-medium"
+            >SIGN IN</a
           >
         </div>
       </div>
@@ -312,11 +280,11 @@
     <header
       class="relative h-screen flex items-center justify-center overflow-hidden"
     >
-      <div class="absolute inset-0 xl:inset-y-0">
+      <div class="absolute inset-0 xl:inset-y-10">
         <img
           src="https://images.unsplash.com/photo-1454789548928-9a90b84e7d62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
           alt=""
-          class="w-screen h-none object-fill"
+          class="w-screen h-6 object-fill"
         />
         <div class="absolute inset-0 hero-gradient"></div>
       </div>
@@ -328,22 +296,22 @@
             animation-delay: 0.2s;
           "
         >
-          MAKING LIFE <span class="spacex-blue">MULTIPLANETARY</span>
+          EXPLORE THE <span class="spacex-blue">UNIVERSE</span>
         </h1>
         <p
           class="text-lg md:text-xl mb-8 text-gray-300 animate-fadeInUp"
           style="animation: fadeInUp 1s ease-out both; animation-delay: 0.4s"
         >
-          SpaceX was founded under the belief that a future where humanity is
-          out exploring the stars is fundamentally more exciting than one where
-          we are not.
+          Your gateway to the cosmos. Learn about planets, constellations, space
+          missions, and test your knowledge with interactive quizzes. Journey
+          through the stars from your classroom.
         </p>
         <a
-          href="https://www.spacex.com/humanspaceflight/mars"
+          href="/planets.html"
           class="btn-spacex inline-block px-8 py-3 rounded-md text-white font-bold orbitron tracking-wider hover:animate-pulse"
           style="animation: fadeInUp 1s ease-out both; animation-delay: 0.6s"
         >
-          EXPLORE <i class="fas fa-arrow-right ml-2"></i>
+          START LEARNING <i class="fas fa-rocket ml-2"></i>
         </a>
       </div>
       <div class="absolute bottom-10 left-0 right-0 text-center">
@@ -372,18 +340,19 @@
           </div>
           <div class="md:w-1/2">
             <h2 class="orbitron text-3xl md:text-4xl font-bold mb-6">
-              REVOLUTIONIZING <span class="spacex-blue">SPACE TECHNOLOGY</span>
+              DISCOVER OUR <span class="spacex-blue">SOLAR SYSTEM</span>
             </h2>
             <p class="text-gray-300 mb-6 text-lg">
-              SpaceX's Starship spacecraft and Super Heavy rocket is a fully
-              reusable transportation system designed to carry both crew and
-              cargo to Earth orbit, the Moon, Mars, and beyond.
+              Journey through our cosmic neighborhood and learn about the eight
+              planets, their moons, and fascinating features. From the scorching
+              surface of Venus to the icy rings of Saturn, explore what makes
+              each planet unique.
             </p>
             <a
-              href="https://www.spacex.com/vehicles/starship"
+              href="/planets.html"
               class="btn-spacex inline-block px-6 py-3 rounded-md text-white font-bold orbitron tracking-wider"
             >
-              LEARN MORE <i class="fas fa-rocket ml-2"></i>
+              EXPLORE PLANETS <i class="fas fa-globe ml-2"></i>
             </a>
           </div>
         </div>
@@ -403,19 +372,19 @@
           </div>
           <div class="md:w-1/2">
             <h2 class="orbitron text-3xl md:text-4xl font-bold mb-6">
-              WORLD'S LEADING <span class="spacex-blue">LAUNCH SERVICE</span>
+              MAP THE <span class="spacex-blue">NIGHT SKY</span>
             </h2>
             <p class="text-gray-300 mb-6 text-lg">
-              SpaceX leads the world in launches with its reliable, reusable
-              rockets and is developing the fully and rapidly reusable rockets
-              necessary to transform humanity's ability to access space into
-              something as routine as air travel.
+              Learn to identify constellations and navigate the night sky like
+              ancient astronomers. Discover the stories behind Orion, Ursa
+              Major, Cassiopeia, and many more celestial patterns that have
+              guided explorers for millennia.
             </p>
             <a
-              href="https://www.spacex.com/rideshare"
+              href="/constellations.html"
               class="btn-spacex inline-block px-6 py-3 rounded-md text-white font-bold orbitron tracking-wider"
             >
-              RESERVE YOUR RIDE <i class="fas fa-space-shuttle ml-2"></i>
+              VIEW CONSTELLATIONS <i class="fas fa-star ml-2"></i>
             </a>
           </div>
         </div>
@@ -435,19 +404,19 @@
           </div>
           <div class="md:w-1/2">
             <h2 class="orbitron text-3xl md:text-4xl font-bold mb-6">
-              ADVANCING <span class="spacex-blue">HUMAN SPACEFLIGHT</span>
+              HISTORIC <span class="spacex-blue">SPACE MISSIONS</span>
             </h2>
             <p class="text-gray-300 mb-6 text-lg">
-              Since returning human spaceflight capabilities to the United
-              States in 2020, SpaceX is helping build a new era where not just
-              hundreds of people, but thousands and ultimately millions will be
-              able to explore space.
+              Explore groundbreaking missions that have expanded our
+              understanding of the universe. From the Apollo Moon landings to
+              the James Webb Space Telescope, discover how humanity has reached
+              for the stars.
             </p>
             <a
-              href="https://www.spacex.com/humanspaceflight"
+              href="/missions.html"
               class="btn-spacex inline-block px-6 py-3 rounded-md text-white font-bold orbitron tracking-wider"
             >
-              JOIN A MISSION <i class="fas fa-user-astronaut ml-2"></i>
+              EXPLORE MISSIONS <i class="fas fa-user-astronaut ml-2"></i>
             </a>
           </div>
         </div>
@@ -467,18 +436,18 @@
           </div>
           <div class="md:w-1/2">
             <h2 class="orbitron text-3xl md:text-4xl font-bold mb-6">
-              HIGH-SPEED INTERNET <span class="spacex-blue">FROM SPACE</span>
+              TEST YOUR <span class="spacex-blue">KNOWLEDGE</span>
             </h2>
             <p class="text-gray-300 mb-6 text-lg">
-              Starlink is the world's most advanced satellite constellation
-              using low-Earth orbit to deliver broadband internet capable of
-              supporting streaming, online gaming, video calls, and more.
+              Challenge yourself with interactive quizzes on planets,
+              constellations, space missions, and more. Track your progress and
+              become an astronomy expert as you master each topic.
             </p>
             <a
-              href="https://www.starlink.com/"
+              href="/quizzes.html"
               class="btn-spacex inline-block px-6 py-3 rounded-md text-white font-bold orbitron tracking-wider"
             >
-              ORDER NOW <i class="fas fa-satellite-dish ml-2"></i>
+              TAKE A QUIZ <i class="fas fa-question-circle ml-2"></i>
             </a>
           </div>
         </div>
@@ -490,58 +459,74 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 class="orbitron text-xl font-bold mb-4">SPACEX</h3>
+            <h3 class="orbitron text-xl font-bold mb-4">ASTROLEARN</h3>
             <p class="text-gray-400">
-              Making humanity multiplanetary by developing fully reusable
-              transportation systems.
+              Your comprehensive online astronomy learning hub. Explore the
+              cosmos, learn about planets, constellations, and space missions.
             </p>
           </div>
           <div>
-            <h4 class="orbitron text-lg font-semibold mb-4">COMPANY</h4>
+            <h4 class="orbitron text-lg font-semibold mb-4">LEARN</h4>
             <ul class="space-y-2">
               <li>
-                <a href="#" class="text-gray-400 hover:text-white transition"
-                  >About</a
+                <a
+                  href="/planets.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Planets</a
                 >
               </li>
               <li>
-                <a href="#" class="text-gray-400 hover:text-white transition"
-                  >Careers</a
+                <a
+                  href="/constellations.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Constellations</a
                 >
               </li>
               <li>
-                <a href="#" class="text-gray-400 hover:text-white transition"
-                  >Press</a
+                <a
+                  href="/missions.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Space Missions</a
                 >
               </li>
               <li>
-                <a href="#" class="text-gray-400 hover:text-white transition"
-                  >Shop</a
+                <a
+                  href="/quizzes.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Quizzes</a
                 >
               </li>
             </ul>
           </div>
           <div>
-            <h4 class="orbitron text-lg font-semibold mb-4">PROGRAMS</h4>
+            <h4 class="orbitron text-lg font-semibold mb-4">RESOURCES</h4>
             <ul class="space-y-2">
               <li>
-                <a href="#" class="text-gray-400 hover:text-white transition"
-                  >Starship</a
+                <a
+                  href="/planets.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Solar System Guide</a
                 >
               </li>
               <li>
-                <a href="#" class="text-gray-400 hover:text-white transition"
-                  >Falcon 9</a
+                <a
+                  href="/constellations.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Star Maps</a
                 >
               </li>
               <li>
-                <a href="#" class="text-gray-400 hover:text-white transition"
-                  >Dragon</a
+                <a
+                  href="/missions.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Mission Timeline</a
                 >
               </li>
               <li>
-                <a href="#" class="text-gray-400 hover:text-white transition"
-                  >Starlink</a
+                <a
+                  href="/auth.html"
+                  class="text-gray-400 hover:text-white transition"
+                  >Sign In</a
                 >
               </li>
             </ul>
@@ -572,7 +557,7 @@
         <div
           class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm"
         >
-          <p>&copy; 2025 SpaceX. All rights reserved.</p>
+          <p>&copy; 2025 AstroLearn. All rights reserved.</p>
         </div>
       </div>
     </footer>
