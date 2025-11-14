@@ -14,11 +14,12 @@
       .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
       .star { position: absolute; background-color: #fff; border-radius: 50%; animation: twinkle var(--duration) infinite ease-in-out; }
       @keyframes twinkle { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
-      .topic-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 2rem; margin-bottom: 1.5rem; transition: all 0.3s ease; cursor: pointer; }
+      .topic-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 2rem; margin-bottom: 1.5rem; transition: all 0.3s ease; cursor: pointer; display: flex; gap: 1.5rem; align-items: flex-start; }
       .topic-card:hover { background: rgba(255, 255, 255, 0.08); transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0, 150, 255, 0.3); }
       .topic-content { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.1); }
       .topic-card.active .topic-content { display: block; }
-      .topic-image { width: 200px; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; float: right; margin-left: 1rem; }
+      .topic-image { width: 200px; height: 150px; object-fit: cover; border-radius: 8px; flex-shrink: 0; }
+      .topic-text { flex: 1; }
     </style>
   </head>
   <body>
@@ -47,57 +48,69 @@
     </header>
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div class="topic-card" onclick="this.classList.toggle('active')">
-        <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=800" alt="Solar System Formation" class="topic-image" />
-        <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-globe mr-2"></i>Solar System Formation</h2>
-        <p class="text-gray-300">Learn how our solar system formed 4.6 billion years ago</p>
-        <div class="topic-content">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/PIA16873-Saturn-Protoplanetary-Disk-ArtistConcept-20140306.jpg/800px-PIA16873-Saturn-Protoplanetary-Disk-ArtistConcept-20140306.jpg" alt="Solar System Formation" class="topic-image" />
+        <div class="topic-text">
+          <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-globe mr-2"></i>Solar System Formation</h2>
+          <p class="text-gray-300">Learn how our solar system formed 4.6 billion years ago</p>
+          <div class="topic-content">
           <p class="text-gray-300 mb-4">The solar system formed from a giant cloud of gas and dust called a solar nebula. About 4.6 billion years ago, gravity caused this cloud to collapse and form a spinning disk. The center became the Sun, while the outer material formed planets, moons, asteroids, and comets.</p>
           <p class="text-gray-300 mb-4">Key processes included accretion (particles sticking together), differentiation (planets separating into layers), and planetary migration. Terrestrial planets formed closer to the Sun where only rock and metal could condense, while gas giants formed further out where ice could also exist.</p>
+          </div>
         </div>
       </div>
       <div class="topic-card" onclick="this.classList.toggle('active')">
-        <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800" alt="Life Cycle of Stars" class="topic-image" />
-        <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-star mr-2"></i>Life Cycle of Stars</h2>
-        <p class="text-gray-300">Understand how stars are born, live, and die</p>
-        <div class="topic-content">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Pillars_of_creation_2014_HST_WFC3-UVIS_full-res_denoised.jpg/800px-Pillars_of_creation_2014_HST_WFC3-UVIS_full-res_denoised.jpg" alt="Life Cycle of Stars" class="topic-image" />
+        <div class="topic-text">
+          <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-star mr-2"></i>Life Cycle of Stars</h2>
+          <p class="text-gray-300">Understand how stars are born, live, and die</p>
+          <div class="topic-content">
           <p class="text-gray-300 mb-4">Stars form when dense regions in molecular clouds collapse under gravity. Nuclear fusion begins when the core reaches 10 million K, starting the main sequence phase. Most of a star's life (billions of years) is spent on the main sequence, fusing hydrogen into helium.</p>
           <p class="text-gray-300 mb-4">After exhausting hydrogen, low-mass stars become red giants, then white dwarfs. High-mass stars become supergiants and explode as supernovae, leaving behind neutron stars or black holes. These explosions create heavier elements and seed the universe with materials for new stars and planets.</p>
+          </div>
         </div>
       </div>
       <div class="topic-card" onclick="this.classList.toggle('active')">
-        <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=800" alt="Black Holes" class="topic-image" />
-        <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-circle-notch mr-2"></i>Black Holes and Relativity</h2>
-        <p class="text-gray-300">Explore the mysteries of black holes and Einstein's theories</p>
-        <div class="topic-content">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Black_hole_-_Messier_87_crop_max_res.jpg/800px-Black_hole_-_Messier_87_crop_max_res.jpg" alt="Black Holes" class="topic-image" />
+        <div class="topic-text">
+          <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-circle-notch mr-2"></i>Black Holes and Relativity</h2>
+          <p class="text-gray-300">Explore the mysteries of black holes and Einstein's theories</p>
+          <div class="topic-content">
           <p class="text-gray-300 mb-4">Black holes are regions where gravity is so strong that nothing, not even light, can escape. They form when massive stars collapse at the end of their lives. Einstein's theory of general relativity predicts their existence and describes how they warp spacetime.</p>
           <p class="text-gray-300 mb-4">Supermassive black holes, millions to billions of times the Sun's mass, exist at the centers of most galaxies. The event horizon marks the point of no return, while the singularity at the center has infinite density. Black holes can merge, producing gravitational waves detectable on Earth.</p>
+          </div>
         </div>
       </div>
       <div class="topic-card" onclick="this.classList.toggle('active')">
-        <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=800" alt="Exoplanets" class="topic-image" />
-        <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-meteor mr-2"></i>Exoplanets and Habitability</h2>
-        <p class="text-gray-300">Discover planets beyond our solar system</p>
-        <div class="topic-content">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Artist%E2%80%99s_impression_of_the_exoplanet_HD_189733_b.jpg/800px-Artist%E2%80%99s_impression_of_the_exoplanet_HD_189733_b.jpg" alt="Exoplanets" class="topic-image" />
+        <div class="topic-text">
+          <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-meteor mr-2"></i>Exoplanets and Habitability</h2>
+          <p class="text-gray-300">Discover planets beyond our solar system</p>
+          <div class="topic-content">
           <p class="text-gray-300 mb-4">Exoplanets are planets orbiting stars other than the Sun. Over 5,000 have been confirmed. Detection methods include the transit method (measuring dimming as planets pass in front of stars) and radial velocity (detecting stellar wobble).</p>
           <p class="text-gray-300 mb-4">The habitable zone is the region around a star where liquid water could exist on a planet's surface. Factors affecting habitability include star type, planetary atmosphere, magnetic fields, and plate tectonics. Some exoplanets may have conditions suitable for life as we know it.</p>
+          </div>
         </div>
       </div>
       <div class="topic-card" onclick="this.classList.toggle('active')">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/The_Blue_Marble_%28remastered%29.jpg/800px-The_Blue_Marble_%28remastered%29.jpg" alt="Earth-Moon System" class="topic-image" />
-        <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-moon mr-2"></i>Earth-Moon System</h2>
-        <p class="text-gray-300">Learn about Earth's relationship with the Moon</p>
-        <div class="topic-content">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/FullMoon2010.jpg/800px-FullMoon2010.jpg" alt="Earth-Moon System" class="topic-image" />
+        <div class="topic-text">
+          <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-moon mr-2"></i>Earth-Moon System</h2>
+          <p class="text-gray-300">Learn about Earth's relationship with the Moon</p>
+          <div class="topic-content">
           <p class="text-gray-300 mb-4">The Moon likely formed from debris ejected when a Mars-sized object collided with early Earth. It stabilizes Earth's axial tilt, preventing extreme climate variations. The Moon's gravity creates tides, which have influenced evolution of life.</p>
           <p class="text-gray-300 mb-4">Lunar phases occur as the Moon orbits Earth, with different portions illuminated. Eclipses happen when Sun, Earth, and Moon align. The Moon is slowly moving away from Earth at 3.8 cm per year, which will affect Earth's rotation over billions of years.</p>
+          </div>
         </div>
       </div>
       <div class="topic-card" onclick="this.classList.toggle('active')">
-        <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=800" alt="Space Exploration" class="topic-image" />
-        <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-satellite mr-2"></i>Space Exploration and Technology</h2>
-        <p class="text-gray-300">Explore space missions and technology</p>
-        <div class="topic-content">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/STS-135_final_Flyaround_of_ISS_1.jpg/800px-STS-135_final_Flyaround_of_ISS_1.jpg" alt="Space Exploration" class="topic-image" />
+        <div class="topic-text">
+          <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-satellite mr-2"></i>Space Exploration and Technology</h2>
+          <p class="text-gray-300">Explore space missions and technology</p>
+          <div class="topic-content">
           <p class="text-gray-300 mb-4">Space exploration began with Sputnik in 1957 and accelerated with the Apollo Moon landings. Modern missions include Mars rovers, the James Webb Space Telescope, and the International Space Station. These missions advance our understanding of the universe.</p>
           <p class="text-gray-300 mb-4">Key technologies include rocket propulsion, life support systems, robotics, and remote sensing. Future missions aim for Mars colonization, asteroid mining, and interstellar travel. Space technology has also led to innovations in medicine, communications, and Earth observation.</p>
+          </div>
         </div>
       </div>
     </main>

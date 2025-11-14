@@ -14,11 +14,12 @@
       .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
       .star { position: absolute; background-color: #fff; border-radius: 50%; animation: twinkle var(--duration) infinite ease-in-out; }
       @keyframes twinkle { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
-      .concept-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 2rem; margin-bottom: 1.5rem; transition: all 0.3s ease; cursor: pointer; }
+      .concept-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 2rem; margin-bottom: 1.5rem; transition: all 0.3s ease; cursor: pointer; display: flex; gap: 1.5rem; align-items: flex-start; }
       .concept-card:hover { background: rgba(255, 255, 255, 0.08); transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0, 150, 255, 0.3); }
       .concept-content { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.1); }
       .concept-card.active .concept-content { display: block; }
-      .concept-image { width: 200px; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem; float: right; margin-left: 1rem; }
+      .concept-image { width: 200px; height: 150px; object-fit: cover; border-radius: 8px; flex-shrink: 0; }
+      .concept-text { flex: 1; }
     </style>
   </head>
   <body>
@@ -47,66 +48,80 @@
     </header>
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div class="concept-card" onclick="this.classList.toggle('active')">
-        <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=800" alt="Gravity and Orbits" class="concept-image" />
-        <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-grav mr-2"></i>Gravity and Orbits</h2>
-        <p class="text-gray-300">Understand how gravity shapes the cosmos</p>
-        <div class="concept-content">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Gravitational_lens-full.jpg/800px-Gravitational_lens-full.jpg" alt="Gravity and Orbits" class="concept-image" />
+        <div class="concept-text">
+          <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-grav mr-2"></i>Gravity and Orbits</h2>
+          <p class="text-gray-300">Understand how gravity shapes the cosmos</p>
+          <div class="concept-content">
           <p class="text-gray-300 mb-4">Gravity is the force of attraction between all masses. Newton's law of universal gravitation states that every object attracts every other object with a force proportional to their masses and inversely proportional to the square of the distance between them.</p>
           <p class="text-gray-300 mb-4">Kepler's laws describe planetary motion: (1) Planets orbit in ellipses with the Sun at one focus, (2) A line joining a planet and Sun sweeps equal areas in equal times, (3) The square of orbital period is proportional to cube of semi-major axis. Einstein's general relativity refined our understanding, showing gravity as spacetime curvature.</p>
+          </div>
         </div>
       </div>
       <div class="concept-card" onclick="this.classList.toggle('active')">
-        <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800" alt="Nuclear Fusion" class="concept-image" />
-        <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-sun mr-2"></i>Nuclear Fusion</h2>
-        <p class="text-gray-300">How stars produce energy</p>
-        <div class="concept-content">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/The_Sun_by_the_Atmospheric_Imaging_Assembly_of_NASA%27s_Solar_Dynamics_Observatory_-_20100819.jpg/800px-The_Sun_by_the_Atmospheric_Imaging_Assembly_of_NASA%27s_Solar_Dynamics_Observatory_-_20100819.jpg" alt="Nuclear Fusion" class="concept-image" />
+        <div class="concept-text">
+          <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-sun mr-2"></i>Nuclear Fusion</h2>
+          <p class="text-gray-300">How stars produce energy</p>
+          <div class="concept-content">
           <p class="text-gray-300 mb-4">Nuclear fusion is the process where atomic nuclei combine to form heavier nuclei, releasing enormous energy. In stars like our Sun, hydrogen nuclei (protons) fuse to form helium through the proton-proton chain reaction.</p>
           <p class="text-gray-300 mb-4">Fusion requires extreme temperatures (millions of degrees) and pressures. The Sun's core at 15 million K enables fusion. Mass-energy equivalence (E=mc²) explains the enormous energy release - a tiny amount of mass converts to vast energy. This process powers stars for billions of years.</p>
+          </div>
         </div>
       </div>
       <div class="concept-card" onclick="this.classList.toggle('active')">
-        <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=800" alt="Electromagnetic Spectrum" class="concept-image" />
-        <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-wave-square mr-2"></i>Electromagnetic Spectrum</h2>
-        <p class="text-gray-300">Understanding light and radiation</p>
-        <div class="concept-content">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/EM_Spectrum_Properties_edit.svg/800px-EM_Spectrum_Properties_edit.svg.png" alt="Electromagnetic Spectrum" class="concept-image" />
+        <div class="concept-text">
+          <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-wave-square mr-2"></i>Electromagnetic Spectrum</h2>
+          <p class="text-gray-300">Understanding light and radiation</p>
+          <div class="concept-content">
           <p class="text-gray-300 mb-4">The electromagnetic spectrum includes all forms of electromagnetic radiation, from gamma rays (highest energy, shortest wavelength) to radio waves (lowest energy, longest wavelength). Visible light is a small portion between infrared and ultraviolet.</p>
           <p class="text-gray-300 mb-4">Different wavelengths reveal different information: X-rays show high-energy processes, visible light shows composition, infrared shows temperature, radio waves reveal magnetic fields. Astronomers use the full spectrum - ground telescopes observe visible/radio/infrared, while space telescopes capture X-rays, gamma rays, and ultraviolet blocked by Earth's atmosphere.</p>
+          </div>
         </div>
       </div>
       <div class="concept-card" onclick="this.classList.toggle('active')">
-        <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800" alt="Expanding Universe" class="concept-image" />
-        <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-expand-arrows-alt mr-2"></i>The Expanding Universe</h2>
-        <p class="text-gray-300">How we discovered cosmic expansion</p>
-        <div class="concept-content">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Hubble_ultra_deep_field_high_rez_edit1.jpg/800px-Hubble_ultra_deep_field_high_rez_edit1.jpg" alt="Expanding Universe" class="concept-image" />
+        <div class="concept-text">
+          <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-expand-arrows-alt mr-2"></i>The Expanding Universe</h2>
+          <p class="text-gray-300">How we discovered cosmic expansion</p>
+          <div class="concept-content">
           <p class="text-gray-300 mb-4">Edwin Hubble discovered in 1929 that galaxies are moving away from us, with more distant galaxies receding faster. This observation led to the Big Bang theory. The universe began 13.8 billion years ago from an extremely hot, dense state.</p>
           <p class="text-gray-300 mb-4">Redshift occurs when light from receding objects stretches to longer wavelengths. The Hubble constant measures expansion rate. Dark energy, discovered in the 1990s, is causing acceleration of this expansion. The universe's fate depends on the balance between expansion and gravity.</p>
+          </div>
         </div>
       </div>
       <div class="concept-card" onclick="this.classList.toggle('active')">
-        <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=800" alt="Light Years" class="concept-image" />
-        <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-balance-scale mr-2"></i>Light Years and Distance</h2>
-        <p class="text-gray-300">Measuring vast cosmic distances</p>
-        <div class="concept-content">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Hubble_Ultra_Deep_Field.jpg/800px-Hubble_Ultra_Deep_Field.jpg" alt="Light Years" class="concept-image" />
+        <div class="concept-text">
+          <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-balance-scale mr-2"></i>Light Years and Distance</h2>
+          <p class="text-gray-300">Measuring vast cosmic distances</p>
+          <div class="concept-content">
           <p class="text-gray-300 mb-4">A light-year is the distance light travels in one year - about 9.46 trillion kilometers. Because light takes time to travel, observing distant objects shows them as they were in the past. We see the Sun as it was 8 minutes ago, nearby stars as decades or centuries ago.</p>
           <p class="text-gray-300 mb-4">Distance measurement methods include parallax for nearby stars, standard candles (like Cepheid variables) for galaxies, and redshift for very distant objects. The observable universe extends about 46.5 billion light-years in all directions, limited by the age of the universe and speed of light.</p>
+          </div>
         </div>
       </div>
       <div class="concept-card" onclick="this.classList.toggle('active')">
-        <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=800" alt="Time and Relativity" class="concept-image" />
-        <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-clock mr-2"></i>Time and Relativity</h2>
-        <p class="text-gray-300">How time behaves in space</p>
-        <div class="concept-content">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Einstein_1921_by_F_Schmutzer_-_restoration.jpg/800px-Einstein_1921_by_F_Schmutzer_-_restoration.jpg" alt="Time and Relativity" class="concept-image" />
+        <div class="concept-text">
+          <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-clock mr-2"></i>Time and Relativity</h2>
+          <p class="text-gray-300">How time behaves in space</p>
+          <div class="concept-content">
           <p class="text-gray-300 mb-4">Einstein's special relativity shows that time is relative - it passes at different rates depending on speed and gravity. Time dilation means fast-moving clocks run slower. GPS satellites must account for this effect to maintain accuracy.</p>
           <p class="text-gray-300 mb-4">General relativity explains gravity as spacetime curvature. Massive objects warp spacetime, affecting time's passage. Near black holes, time slows dramatically. The theory successfully predicts phenomena like gravitational waves and light bending around massive objects.</p>
+          </div>
         </div>
       </div>
       <div class="concept-card" onclick="this.classList.toggle('active')">
-        <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=800" alt="Exoplanet Detection" class="concept-image" />
-        <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-search mr-2"></i>Exoplanet Detection Methods</h2>
-        <p class="text-gray-300">How we find planets around other stars</p>
-        <div class="concept-content">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Planetary_transit.jpg/800px-Planetary_transit.jpg" alt="Exoplanet Detection" class="concept-image" />
+        <div class="concept-text">
+          <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-search mr-2"></i>Exoplanet Detection Methods</h2>
+          <p class="text-gray-300">How we find planets around other stars</p>
+          <div class="concept-content">
           <p class="text-gray-300 mb-4">The transit method detects exoplanets when they pass in front of their star, causing periodic dimming. The radial velocity method detects stellar wobble caused by planetary gravitational pull. Direct imaging captures exoplanet light directly, though very challenging.</p>
           <p class="text-gray-300 mb-4">Gravitational microlensing detects planets by their effect on light from background stars. Astrometry measures precise star positions. Each method has strengths - transit finds many planets, radial velocity determines masses, direct imaging can study atmospheres.</p>
+          </div>
         </div>
       </div>
     </main>
