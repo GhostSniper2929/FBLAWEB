@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Constellations - AstroLearn</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap");
+
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: #000;
+        color: #fff;
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+      }
+
+      .orbitron {
+        font-family: "Orbitron", sans-serif;
+      }
+
+      .section-card {
+        transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .section-card:hover {
+        transform: translateY(-10px) scale(1.01);
+        box-shadow: 0 15px 35px rgba(0, 150, 255, 0.4);
+      }
+
+      .spacex-blue {
+        color: #005288;
+      }
+
+      .btn-spacex {
+        background: linear-gradient(90deg, #005288 0%, #0078d4 100%);
+        transition: all 0.3s ease;
+      }
+
+      .btn-spacex:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 120, 212, 0.4);
+      }
+
+      .stars {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      .star {
+        position: absolute;
+        background-color: #fff;
+        border-radius: 50%;
+        animation: twinkle var(--duration) infinite ease-in-out;
+      }
+
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.2;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      .constellation-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .constellation-card:hover {
+        transform: translateY(-8px);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Stars Background -->
+    <div class="stars" id="stars"></div>
+
+    <!-- Navigation -->
+    <nav
+      class="fixed w-full z-50 bg-transparent bg-opacity-30 backdrop-filter backdrop-blur-lg border-b border-gray-800"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <a href="/" class="orbitron text-2xl font-bold text-white">ASTROLEARN</a>
+            </div>
+          </div>
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-8">
+              <a
+                href="/planets.html"
+                class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300"
+                >PLANETS</a
+              >
+              <a
+                href="/constellations.html"
+                class="text-blue-400 px-3 py-2 text-sm font-medium transition duration-300"
+                >CONSTELLATIONS</a
+              >
+              <a
+                href="/missions.html"
+                class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300"
+                >MISSIONS</a
+              >
+              <a
+                href="/quizzes.html"
+                class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300"
+                >QUIZZES</a
+              >
+              <a
+                href="/auth.html"
+                class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300"
+                >SIGN IN</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-32 pb-16 px-4 text-center">
+      <h1 class="orbitron text-5xl md:text-7xl font-bold mb-4">
+        CONSTELLATIONS OF THE <span class="spacex-blue">NIGHT SKY</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+        Learn to identify patterns in the stars. Discover the myths and legends
+        behind these celestial formations that have guided travelers for
+        thousands of years.
+      </p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Orion -->
+        <div class="section-card constellation-card rounded-xl p-6">
+          <div class="text-center mb-4">
+            <i class="fas fa-star text-yellow-300 text-5xl"></i>
+          </div>
+          <h3 class="orbitron text-2xl font-bold mb-3">ORION</h3>
+          <p class="text-gray-300 text-sm mb-4">
+            The Hunter. One of the most recognizable constellations. Visible
+            from November to February in the Northern Hemisphere.
+          </p>
+          <div class="text-xs text-gray-400 space-y-1">
+            <p><strong>Best Visible:</strong> Winter (Northern Hemisphere)</p>
+            <p><strong>Brightest Star:</strong> Rigel</p>
+            <p><strong>Mythology:</strong> Greek hunter in the stars</p>
+            <p><strong>Features:</strong> Orion's Belt (3 stars in a row)</p>
+          </div>
+        </div>
+
+        <!-- Ursa Major -->
+        <div class="section-card constellation-card rounded-xl p-6">
+          <div class="text-center mb-4">
+            <i class="fas fa-star text-white text-5xl"></i>
+          </div>
+          <h3 class="orbitron text-2xl font-bold mb-3">URSA MAJOR</h3>
+          <p class="text-gray-300 text-sm mb-4">
+            The Great Bear. Contains the Big Dipper asterism. Used for
+            navigation throughout history.
+          </p>
+          <div class="text-xs text-gray-400 space-y-1">
+            <p><strong>Best Visible:</strong> Year-round (Northern Hemisphere)</p>
+            <p><strong>Brightest Star:</strong> Alioth</p>
+            <p><strong>Mythology:</strong> Callisto transformed into a bear</p>
+            <p><strong>Features:</strong> The Big Dipper (7 stars)</p>
+          </div>
+        </div>
+
+        <!-- Cassiopeia -->
+        <div class="section-card constellation-card rounded-xl p-6">
+          <div class="text-center mb-4">
+            <i class="fas fa-star text-cyan-300 text-5xl"></i>
+          </div>
+          <h3 class="orbitron text-2xl font-bold mb-3">CASSIOPEIA</h3>
+          <p class="text-gray-300 text-sm mb-4">
+            The Queen. Forms a distinctive "W" or "M" shape. Visible year-round
+            in Northern latitudes.
+          </p>
+          <div class="text-xs text-gray-400 space-y-1">
+            <p><strong>Best Visible:</strong> Year-round (Northern Hemisphere)</p>
+            <p><strong>Brightest Star:</strong> Schedar</p>
+            <p><strong>Mythology:</strong> Vain queen of Ethiopia</p>
+            <p><strong>Features:</strong> Distinctive W/M shape</p>
+          </div>
+        </div>
+
+        <!-- Leo -->
+        <div class="section-card constellation-card rounded-xl p-6">
+          <div class="text-center mb-4">
+            <i class="fas fa-star text-orange-400 text-5xl"></i>
+          </div>
+          <h3 class="orbitron text-2xl font-bold mb-3">LEO</h3>
+          <p class="text-gray-300 text-sm mb-4">
+            The Lion. One of the zodiac constellations. Contains the bright star
+            Regulus, meaning "little king."
+          </p>
+          <div class="text-xs text-gray-400 space-y-1">
+            <p><strong>Best Visible:</strong> Spring (Northern Hemisphere)</p>
+            <p><strong>Brightest Star:</strong> Regulus</p>
+            <p><strong>Mythology:</strong> Nemean Lion defeated by Hercules</p>
+            <p><strong>Features:</strong> Zodiac constellation</p>
+          </div>
+        </div>
+
+        <!-- Scorpius -->
+        <div class="section-card constellation-card rounded-xl p-6">
+          <div class="text-center mb-4">
+            <i class="fas fa-star text-red-500 text-5xl"></i>
+          </div>
+          <h3 class="orbitron text-2xl font-bold mb-3">SCORPIUS</h3>
+          <p class="text-gray-300 text-sm mb-4">
+            The Scorpion. A zodiac constellation with a distinctive curved tail.
+            Contains the bright red star Antares.
+          </p>
+          <div class="text-xs text-gray-400 space-y-1">
+            <p><strong>Best Visible:</strong> Summer (Northern Hemisphere)</p>
+            <p><strong>Brightest Star:</strong> Antares (Red Supergiant)</p>
+            <p><strong>Mythology:</strong> Scorpion that killed Orion</p>
+            <p><strong>Features:</strong> Distinctive scorpion shape</p>
+          </div>
+        </div>
+
+        <!-- Cygnus -->
+        <div class="section-card constellation-card rounded-xl p-6">
+          <div class="text-center mb-4">
+            <i class="fas fa-star text-blue-300 text-5xl"></i>
+          </div>
+          <h3 class="orbitron text-2xl font-bold mb-3">CYGNUS</h3>
+          <p class="text-gray-300 text-sm mb-4">
+            The Swan. Also known as the Northern Cross. Part of the Summer
+            Triangle along with Vega and Altair.
+          </p>
+          <div class="text-xs text-gray-400 space-y-1">
+            <p><strong>Best Visible:</strong> Summer (Northern Hemisphere)</p>
+            <p><strong>Brightest Star:</strong> Deneb</p>
+            <p><strong>Mythology:</strong> Zeus in swan form</p>
+            <p><strong>Features:</strong> Northern Cross asterism</p>
+          </div>
+        </div>
+
+        <!-- Draco -->
+        <div class="section-card constellation-card rounded-xl p-6">
+          <div class="text-center mb-4">
+            <i class="fas fa-star text-purple-300 text-5xl"></i>
+          </div>
+          <h3 class="orbitron text-2xl font-bold mb-3">DRACO</h3>
+          <p class="text-gray-300 text-sm mb-4">
+            The Dragon. Winds around the Little Dipper. Used to point to the
+            north celestial pole thousands of years ago.
+          </p>
+          <div class="text-xs text-gray-400 space-y-1">
+            <p><strong>Best Visible:</strong> Year-round (Northern Hemisphere)</p>
+            <p><strong>Brightest Star:</strong> Eltanin</p>
+            <p><strong>Mythology:</strong> Dragon slain by Hercules</p>
+            <p><strong>Features:</strong> Wraps around Ursa Minor</p>
+          </div>
+        </div>
+
+        <!-- Pegasus -->
+        <div class="section-card constellation-card rounded-xl p-6">
+          <div class="text-center mb-4">
+            <i class="fas fa-star text-indigo-300 text-5xl"></i>
+          </div>
+          <h3 class="orbitron text-2xl font-bold mb-3">PEGASUS</h3>
+          <p class="text-gray-300 text-sm mb-4">
+            The Winged Horse. Contains the Great Square of Pegasus asterism.
+            Visible in autumn skies.
+          </p>
+          <div class="text-xs text-gray-400 space-y-1">
+            <p><strong>Best Visible:</strong> Autumn (Northern Hemisphere)</p>
+            <p><strong>Brightest Star:</strong> Enif</p>
+            <p><strong>Mythology:</strong> Winged horse from Greek myths</p>
+            <p><strong>Features:</strong> Great Square asterism</p>
+          </div>
+        </div>
+
+        <!-- Andromeda -->
+        <div class="section-card constellation-card rounded-xl p-6">
+          <div class="text-center mb-4">
+            <i class="fas fa-star text-pink-300 text-5xl"></i>
+          </div>
+          <h3 class="orbitron text-2xl font-bold mb-3">ANDROMEDA</h3>
+          <p class="text-gray-300 text-sm mb-4">
+            The Chained Princess. Contains the Andromeda Galaxy, visible to the
+            naked eye on dark nights.
+          </p>
+          <div class="text-xs text-gray-400 space-y-1">
+            <p><strong>Best Visible:</strong> Autumn (Northern Hemisphere)</p>
+            <p><strong>Brightest Star:</strong> Alpheratz</p>
+            <p><strong>Mythology:</strong> Princess chained to a rock</p>
+            <p><strong>Features:</strong> Andromeda Galaxy (M31)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- How to Find Constellations -->
+      <section class="mt-20">
+        <div class="section-card rounded-xl p-8 md:p-10">
+          <h2 class="orbitron text-3xl md:text-4xl font-bold mb-6 text-center">
+            HOW TO FIND <span class="spacex-blue">CONSTELLATIONS</span>
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h3 class="orbitron text-xl font-bold mb-4 text-blue-400">
+                TIPS FOR STARGAZING
+              </h3>
+              <ul class="text-gray-300 space-y-3">
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-blue-400 mr-3 mt-1"></i>
+                  <span>Find a dark location away from city lights</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-blue-400 mr-3 mt-1"></i>
+                  <span>Allow 20 minutes for your eyes to adjust to darkness</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-blue-400 mr-3 mt-1"></i>
+                  <span>Use star maps or astronomy apps on your phone</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-blue-400 mr-3 mt-1"></i>
+                  <span>Start with bright, easily recognizable patterns</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-blue-400 mr-3 mt-1"></i>
+                  <span>Use the Big Dipper as a guide to find other stars</span>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="orbitron text-xl font-bold mb-4 text-blue-400">
+                SEASONAL VIEWING
+              </h3>
+              <p class="text-gray-300 mb-4">
+                Different constellations are visible at different times of year
+                as Earth orbits the Sun. Some constellations circle the North
+                Star and are visible year-round, while others are seasonal.
+              </p>
+              <div class="text-gray-400 text-sm space-y-2">
+                <p><strong>Winter:</strong> Orion, Taurus, Gemini</p>
+                <p><strong>Spring:</strong> Leo, Virgo, Bootes</p>
+                <p><strong>Summer:</strong> Cygnus, Lyra, Scorpius</p>
+                <p><strong>Autumn:</strong> Pegasus, Andromeda, Perseus</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black bg-opacity-90 border-t border-gray-800 py-12 mt-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center text-gray-500 text-sm">
+          <p>&copy; 2025 AstroLearn. All rights reserved.</p>
+          <a href="/" class="text-blue-400 hover:text-blue-300 mt-4 inline-block"
+            >Back to Home</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Create stars background
+      function createStars() {
+        const starsContainer = document.getElementById("stars");
+        const starsCount = 300;
+
+        for (let i = 0; i < starsCount; i++) {
+          const star = document.createElement("div");
+          star.classList.add("star");
+
+          const x = Math.random() * 100;
+          const y = Math.random() * 100;
+          const size = Math.random() * 3;
+          const duration = Math.random() * 5 + 5;
+
+          star.style.left = `${x}%`;
+          star.style.top = `${y}%`;
+          star.style.width = `${size}px`;
+          star.style.height = `${size}px`;
+          star.style.setProperty("--duration", `${duration}s`);
+
+          starsContainer.appendChild(star);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", createStars);
+    </script>
+  </body>
+</html>
+

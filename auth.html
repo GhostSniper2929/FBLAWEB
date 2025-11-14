@@ -3,9 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LUNEX | Login / Signup</title>
+    <title>Sign In - AstroLearn</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;500&display=swap");
 
@@ -107,24 +111,29 @@
   <body>
     <!-- Star Background -->
     <div id="stars" class="fixed inset-0 -z-10"></div>
-    <img
+      <img
       autoplay
       muted
       loop
       id="myVideo"
-      src="https://www.spacex.com/assets/images/human-spaceflight/mars/mars_hero_d.jpg"
-      alt="Mars Hero Image"
+      src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+      alt="Space Background"
     />
 
     <div class="container">
       <!-- Website Info -->
       <div class="info-section text-center">
-        <h1 class="orbitron text-5xl mb-4">AstroQuest</h1>
-        <p class="text-gray-300 mb-4">
-          Explore the universe of learning! Connect, share, and grow your
-          knowledge with our community.
+        <h1 class="orbitron text-5xl mb-4">ASTROLEARN</h1>
+        <p class="text-gray-300 mb-4 text-lg">
+          Your gateway to the cosmos! Explore planets, constellations, space missions,
+          and test your knowledge with interactive quizzes.
         </p>
-        <p class="text-gray-400">Join us today and embark on your journey!</p>
+        <p class="text-gray-400 mb-4">Join thousands of students exploring the universe!</p>
+        <div class="flex justify-center gap-4 mt-6">
+          <a href="/" class="text-blue-400 hover:text-blue-300 text-sm">
+            <i class="fas fa-home mr-2"></i>Back to Home
+          </a>
+        </div>
       </div>
 
       <!-- Auth Box -->
@@ -132,26 +141,27 @@
         <div id="auth-container" class="auth-box glass p-6">
           <!-- Login Form -->
           <form id="login-form">
-            <h2 class="text-white text-2xl mb-4">Login</h2>
+            <h2 class="text-white text-2xl mb-4 orbitron">LOGIN</h2>
+            <p class="text-gray-400 text-sm mb-4">Sign in to track your learning progress</p>
             <input
               type="email"
               placeholder="Email"
-              class="w-full p-2 mb-4 rounded"
+              class="w-full p-3 mb-4 rounded bg-black bg-opacity-50 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
             />
             <input
               type="password"
               placeholder="Password"
-              class="w-full p-2 mb-4 rounded"
+              class="w-full p-3 mb-4 rounded bg-black bg-opacity-50 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
             />
             <button
               type="submit"
-              class="w-full p-2 bg-blue-600 rounded text-white"
+              class="w-full p-3 bg-blue-600 rounded text-white font-bold orbitron tracking-wider hover:bg-blue-700 transition"
             >
-              Login
+              <i class="fas fa-rocket mr-2"></i>LOGIN
             </button>
-            <p class="text-gray-400 mt-4 text-center">
+            <p class="text-gray-400 mt-4 text-center text-sm">
               Don't have an account?
-              <span id="show-signup" class="text-blue-400 cursor-pointer"
+              <span id="show-signup" class="text-blue-400 cursor-pointer hover:text-blue-300 font-semibold"
                 >Sign up</span
               >
             </p>
@@ -159,31 +169,32 @@
 
           <!-- Signup Form -->
           <form id="signup-form" class="hidden">
-            <h2 class="text-white text-2xl mb-4">Sign Up</h2>
+            <h2 class="text-white text-2xl mb-4 orbitron">SIGN UP</h2>
+            <p class="text-gray-400 text-sm mb-4">Create an account to start your astronomy journey</p>
             <input
               type="text"
               placeholder="Name"
-              class="w-full p-2 mb-4 rounded"
+              class="w-full p-3 mb-4 rounded bg-black bg-opacity-50 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
             />
             <input
               type="email"
               placeholder="Email"
-              class="w-full p-2 mb-4 rounded"
+              class="w-full p-3 mb-4 rounded bg-black bg-opacity-50 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
             />
             <input
               type="password"
               placeholder="Password"
-              class="w-full p-2 mb-4 rounded"
+              class="w-full p-3 mb-4 rounded bg-black bg-opacity-50 border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
             />
             <button
               type="submit"
-              class="w-full p-2 bg-green-600 rounded text-white"
+              class="w-full p-3 bg-green-600 rounded text-white font-bold orbitron tracking-wider hover:bg-green-700 transition"
             >
-              Sign Up
+              <i class="fas fa-user-astronaut mr-2"></i>SIGN UP
             </button>
-            <p class="text-gray-400 mt-4 text-center">
+            <p class="text-gray-400 mt-4 text-center text-sm">
               Already have an account?
-              <span id="show-login" class="text-blue-400 cursor-pointer"
+              <span id="show-login" class="text-blue-400 cursor-pointer hover:text-blue-300 font-semibold"
                 >Login</span
               >
             </p>

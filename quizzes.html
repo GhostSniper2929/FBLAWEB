@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quizzes - AstroLearn</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap");
+
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: #000;
+        color: #fff;
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+      }
+
+      .orbitron {
+        font-family: "Orbitron", sans-serif;
+      }
+
+      .section-card {
+        transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .section-card:hover {
+        transform: translateY(-10px) scale(1.01);
+        box-shadow: 0 15px 35px rgba(0, 150, 255, 0.4);
+      }
+
+      .quiz-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+      }
+
+      .quiz-card:hover {
+        transform: translateY(-8px);
+      }
+
+      .spacex-blue {
+        color: #005288;
+      }
+
+      .btn-spacex {
+        background: linear-gradient(90deg, #005288 0%, #0078d4 100%);
+        transition: all 0.3s ease;
+      }
+
+      .btn-spacex:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 120, 212, 0.4);
+      }
+
+      .stars {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      .star {
+        position: absolute;
+        background-color: #fff;
+        border-radius: 50%;
+        animation: twinkle var(--duration) infinite ease-in-out;
+      }
+
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.2;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      .quiz-container {
+        display: none;
+      }
+
+      .quiz-container.active {
+        display: block;
+      }
+
+      .answer-option {
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .answer-option:hover {
+        background: rgba(0, 150, 255, 0.2);
+      }
+
+      .answer-option.selected {
+        background: rgba(0, 150, 255, 0.3);
+        border-color: #0096ff;
+      }
+
+      .answer-option.correct {
+        background: rgba(0, 255, 0, 0.2);
+        border-color: #00ff00;
+      }
+
+      .answer-option.incorrect {
+        background: rgba(255, 0, 0, 0.2);
+        border-color: #ff0000;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Stars Background -->
+    <div class="stars" id="stars"></div>
+
+    <!-- Navigation -->
+    <nav
+      class="fixed w-full z-50 bg-transparent bg-opacity-30 backdrop-filter backdrop-blur-lg border-b border-gray-800"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <a href="/" class="orbitron text-2xl font-bold text-white">ASTROLEARN</a>
+            </div>
+          </div>
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-8">
+              <a
+                href="/planets.html"
+                class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300"
+                >PLANETS</a
+              >
+              <a
+                href="/constellations.html"
+                class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300"
+                >CONSTELLATIONS</a
+              >
+              <a
+                href="/missions.html"
+                class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300"
+                >MISSIONS</a
+              >
+              <a
+                href="/quizzes.html"
+                class="text-blue-400 px-3 py-2 text-sm font-medium transition duration-300"
+                >QUIZZES</a
+              >
+              <a
+                href="/auth.html"
+                class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300"
+                >SIGN IN</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-32 pb-16 px-4 text-center">
+      <h1 class="orbitron text-5xl md:text-7xl font-bold mb-4">
+        TEST YOUR <span class="spacex-blue">KNOWLEDGE</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+        Challenge yourself with interactive quizzes on planets, constellations,
+        space missions, and more. Track your progress as you master astronomy!
+      </p>
+    </header>
+
+    <!-- Quiz Selection -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16" id="quiz-selection">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <!-- Planets Quiz -->
+        <div class="section-card quiz-card rounded-xl p-6" onclick="startQuiz('planets')">
+          <div class="text-center mb-4">
+            <i class="fas fa-globe text-blue-400 text-5xl"></i>
+          </div>
+          <h3 class="orbitron text-2xl font-bold mb-3">PLANETS QUIZ</h3>
+          <p class="text-gray-300 text-sm mb-4">
+            Test your knowledge of the eight planets in our solar system.
+            Questions about sizes, distances, moons, and unique features.
+          </p>
+          <div class="text-xs text-gray-400">
+            <p><i class="fas fa-question-circle mr-2"></i>10 Questions</p>
+            <p><i class="fas fa-clock mr-2"></i>5-10 minutes</p>
+          </div>
+        </div>
+
+        <!-- Constellations Quiz -->
+        <div class="section-card quiz-card rounded-xl p-6" onclick="startQuiz('constellations')">
+          <div class="text-center mb-4">
+            <i class="fas fa-star text-yellow-300 text-5xl"></i>
+          </div>
+          <h3 class="orbitron text-2xl font-bold mb-3">CONSTELLATIONS QUIZ</h3>
+          <p class="text-gray-300 text-sm mb-4">
+            How well do you know the night sky? Test your knowledge of
+            constellations, their myths, and when to see them.
+          </p>
+          <div class="text-xs text-gray-400">
+            <p><i class="fas fa-question-circle mr-2"></i>10 Questions</p>
+            <p><i class="fas fa-clock mr-2"></i>5-10 minutes</p>
+          </div>
+        </div>
+
+        <!-- Missions Quiz -->
+        <div class="section-card quiz-card rounded-xl p-6" onclick="startQuiz('missions')">
+          <div class="text-center mb-4">
+            <i class="fas fa-rocket text-green-400 text-5xl"></i>
+          </div>
+          <h3 class="orbitron text-2xl font-bold mb-3">SPACE MISSIONS QUIZ</h3>
+          <p class="text-gray-300 text-sm mb-4">
+            From Apollo to James Webb, test your knowledge of historic space
+            missions and their groundbreaking discoveries.
+          </p>
+          <div class="text-xs text-gray-400">
+            <p><i class="fas fa-question-circle mr-2"></i>10 Questions</p>
+            <p><i class="fas fa-clock mr-2"></i>5-10 minutes</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Quiz Container -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 quiz-container" id="quiz-container">
+      <div class="section-card rounded-xl p-8">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="orbitron text-3xl font-bold" id="quiz-title">QUIZ</h2>
+          <div class="text-right">
+            <p class="text-gray-400 text-sm">Question <span id="question-number">1</span> of <span id="total-questions">10</span></p>
+            <p class="text-gray-400 text-sm">Score: <span id="score">0</span></p>
+          </div>
+        </div>
+
+        <div id="question-container" class="mb-8">
+          <h3 class="orbitron text-2xl font-bold mb-6 text-blue-400" id="question-text">Question</h3>
+          <div class="space-y-4" id="answers-container">
+            <!-- Answer options will be inserted here -->
+          </div>
+        </div>
+
+        <div class="flex justify-between">
+          <button
+            onclick="goBack()"
+            class="btn-spacex px-6 py-3 rounded-md text-white font-bold orbitron tracking-wider"
+          >
+            <i class="fas fa-arrow-left mr-2"></i> Back to Quizzes
+          </button>
+          <button
+            onclick="nextQuestion()"
+            id="next-button"
+            class="btn-spacex px-6 py-3 rounded-md text-white font-bold orbitron tracking-wider hidden"
+          >
+            Next Question <i class="fas fa-arrow-right ml-2"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Results Container -->
+      <div id="results-container" class="section-card rounded-xl p-8 mt-8 hidden">
+        <h2 class="orbitron text-4xl font-bold mb-6 text-center">QUIZ COMPLETE!</h2>
+        <div class="text-center mb-8">
+          <p class="text-3xl mb-4">Your Score: <span id="final-score" class="text-blue-400">0</span> / <span id="final-total">10</span></p>
+          <p class="text-xl text-gray-300" id="score-message">Great job!</p>
+        </div>
+        <div class="flex justify-center gap-4">
+          <button
+            onclick="resetQuiz()"
+            class="btn-spacex px-6 py-3 rounded-md text-white font-bold orbitron tracking-wider"
+          >
+            Take Another Quiz
+          </button>
+          <button
+            onclick="goBack()"
+            class="btn-spacex px-6 py-3 rounded-md text-white font-bold orbitron tracking-wider"
+          >
+            Back to Quizzes
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black bg-opacity-90 border-t border-gray-800 py-12 mt-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center text-gray-500 text-sm">
+          <p>&copy; 2025 AstroLearn. All rights reserved.</p>
+          <a href="/" class="text-blue-400 hover:text-blue-300 mt-4 inline-block"
+            >Back to Home</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Quiz data
+      const quizzes = {
+        planets: {
+          title: "PLANETS QUIZ",
+          questions: [
+            {
+              question: "Which planet is closest to the Sun?",
+              answers: ["Venus", "Mercury", "Earth", "Mars"],
+              correct: 1
+            },
+            {
+              question: "What is the largest planet in our solar system?",
+              answers: ["Saturn", "Jupiter", "Neptune", "Uranus"],
+              correct: 1
+            },
+            {
+              question: "Which planet is known as the Red Planet?",
+              answers: ["Venus", "Jupiter", "Mars", "Saturn"],
+              correct: 2
+            },
+            {
+              question: "How many moons does Earth have?",
+              answers: ["0", "1", "2", "3"],
+              correct: 1
+            },
+            {
+              question: "Which planet has the most moons?",
+              answers: ["Jupiter", "Saturn", "Uranus", "Neptune"],
+              correct: 1
+            },
+            {
+              question: "What is the hottest planet in our solar system?",
+              answers: ["Mercury", "Venus", "Earth", "Mars"],
+              correct: 1
+            },
+            {
+              question: "Which planet has visible rings?",
+              answers: ["Jupiter", "Saturn", "Uranus", "All of the above"],
+              correct: 3
+            },
+            {
+              question: "How long is a day on Jupiter?",
+              answers: ["24 hours", "10 hours", "48 hours", "16 hours"],
+              correct: 1
+            },
+            {
+              question: "Which planet takes the longest to orbit the Sun?",
+              answers: ["Uranus", "Neptune", "Saturn", "Jupiter"],
+              correct: 1
+            },
+            {
+              question: "What type of planet is Earth?",
+              answers: ["Gas giant", "Ice giant", "Terrestrial planet", "Dwarf planet"],
+              correct: 2
+            }
+          ]
+        },
+        constellations: {
+          title: "CONSTELLATIONS QUIZ",
+          questions: [
+            {
+              question: "Which constellation contains the Big Dipper?",
+              answers: ["Orion", "Ursa Major", "Cassiopeia", "Leo"],
+              correct: 1
+            },
+            {
+              question: "What is the brightest star in the night sky?",
+              answers: ["Vega", "Sirius", "Polaris", "Betelgeuse"],
+              correct: 1
+            },
+            {
+              question: "Which constellation is known as 'The Hunter'?",
+              answers: ["Leo", "Orion", "Hercules", "Perseus"],
+              correct: 1
+            },
+            {
+              question: "How many stars make up Orion's Belt?",
+              answers: ["2", "3", "4", "5"],
+              correct: 1
+            },
+            {
+              question: "Which constellation contains the star Regulus?",
+              answers: ["Virgo", "Leo", "Scorpius", "Taurus"],
+              correct: 1
+            },
+            {
+              question: "What shape does the constellation Cassiopeia form?",
+              answers: ["W or M", "Square", "Triangle", "Circle"],
+              correct: 0
+            },
+            {
+              question: "Which constellation is visible year-round in the Northern Hemisphere?",
+              answers: ["Orion", "Ursa Major", "Leo", "Scorpius"],
+              correct: 1
+            },
+            {
+              question: "What is the name of the brightest star in Scorpius?",
+              answers: ["Rigel", "Antares", "Betelgeuse", "Altair"],
+              correct: 1
+            },
+            {
+              question: "Which constellation is part of the Summer Triangle?",
+              answers: ["Cygnus", "Orion", "Cassiopeia", "Pegasus"],
+              correct: 0
+            },
+            {
+              question: "What is the North Star also known as?",
+              answers: ["Sirius", "Vega", "Polaris", "Capella"],
+              correct: 2
+            }
+          ]
+        },
+        missions: {
+          title: "SPACE MISSIONS QUIZ",
+          questions: [
+            {
+              question: "Which mission first landed humans on the Moon?",
+              answers: ["Apollo 10", "Apollo 11", "Apollo 12", "Apollo 13"],
+              correct: 1
+            },
+            {
+              question: "Who was the first person to walk on the Moon?",
+              answers: ["Buzz Aldrin", "Neil Armstrong", "Michael Collins", "Alan Shepard"],
+              correct: 1
+            },
+            {
+              question: "Which space telescope was launched in 2021?",
+              answers: ["Hubble", "Kepler", "James Webb", "Spitzer"],
+              correct: 2
+            },
+            {
+              question: "Which rover landed on Mars in 2021?",
+              answers: ["Opportunity", "Curiosity", "Perseverance", "Spirit"],
+              correct: 2
+            },
+            {
+              question: "Which spacecraft is farthest from Earth?",
+              answers: ["New Horizons", "Voyager 1", "Voyager 2", "Pioneer 10"],
+              correct: 1
+            },
+            {
+              question: "What year did the Hubble Space Telescope launch?",
+              answers: ["1988", "1990", "1992", "1995"],
+              correct: 1
+            },
+            {
+              question: "Which mission flew by Pluto in 2015?",
+              answers: ["Voyager 1", "New Horizons", "Cassini", "Juno"],
+              correct: 1
+            },
+            {
+              question: "What does ISS stand for?",
+              answers: ["International Space Station", "Interstellar Space Station", "Intergalactic Space Station", "International Satellite Station"],
+              correct: 0
+            },
+            {
+              question: "Which spacecraft is studying the Sun up close?",
+              answers: ["Parker Solar Probe", "Solar Orbiter", "SOHO", "STEREO"],
+              correct: 0
+            },
+            {
+              question: "When was the International Space Station first occupied?",
+              answers: ["1998", "2000", "2002", "2004"],
+              correct: 1
+            }
+          ]
+        }
+      };
+
+      let currentQuiz = null;
+      let currentQuestion = 0;
+      let score = 0;
+      let selectedAnswer = null;
+
+      function startQuiz(quizType) {
+        currentQuiz = quizzes[quizType];
+        currentQuestion = 0;
+        score = 0;
+        selectedAnswer = null;
+
+        document.getElementById("quiz-selection").style.display = "none";
+        document.getElementById("quiz-container").classList.add("active");
+        document.getElementById("quiz-title").textContent = currentQuiz.title;
+        document.getElementById("total-questions").textContent = currentQuiz.questions.length;
+        document.getElementById("results-container").classList.add("hidden");
+
+        loadQuestion();
+      }
+
+      function loadQuestion() {
+        const question = currentQuiz.questions[currentQuestion];
+        document.getElementById("question-number").textContent = currentQuestion + 1;
+        document.getElementById("question-text").textContent = question.question;
+        document.getElementById("score").textContent = score;
+
+        const answersContainer = document.getElementById("answers-container");
+        answersContainer.innerHTML = "";
+
+        question.answers.forEach((answer, index) => {
+          const answerDiv = document.createElement("div");
+          answerDiv.className = "answer-option border border-gray-600 rounded-lg p-4";
+          answerDiv.textContent = answer;
+          answerDiv.onclick = () => selectAnswer(index);
+          answersContainer.appendChild(answerDiv);
+        });
+
+        document.getElementById("next-button").classList.add("hidden");
+        selectedAnswer = null;
+      }
+
+      function selectAnswer(index) {
+        if (selectedAnswer !== null) return;
+
+        selectedAnswer = index;
+        const options = document.querySelectorAll(".answer-option");
+        options[index].classList.add("selected");
+
+        const correct = currentQuiz.questions[currentQuestion].correct;
+        if (index === correct) {
+          options[index].classList.add("correct");
+          score++;
+          document.getElementById("score").textContent = score;
+        } else {
+          options[index].classList.add("incorrect");
+          options[correct].classList.add("correct");
+        }
+
+        document.getElementById("next-button").classList.remove("hidden");
+      }
+
+      function nextQuestion() {
+        currentQuestion++;
+        if (currentQuestion < currentQuiz.questions.length) {
+          loadQuestion();
+        } else {
+          showResults();
+        }
+      }
+
+      function showResults() {
+        document.getElementById("question-container").classList.add("hidden");
+        document.getElementById("next-button").classList.add("hidden");
+        document.getElementById("results-container").classList.remove("hidden");
+        document.getElementById("final-score").textContent = score;
+        document.getElementById("final-total").textContent = currentQuiz.questions.length;
+
+        const percentage = (score / currentQuiz.questions.length) * 100;
+        let message = "";
+        if (percentage === 100) {
+          message = "Perfect! You're an astronomy expert! 🌟";
+        } else if (percentage >= 80) {
+          message = "Excellent work! Keep learning! ⭐";
+        } else if (percentage >= 60) {
+          message = "Good job! You're getting there! 🌙";
+        } else {
+          message = "Keep studying! You'll improve! 🚀";
+        }
+        document.getElementById("score-message").textContent = message;
+      }
+
+      function resetQuiz() {
+        document.getElementById("question-container").classList.remove("hidden");
+        document.getElementById("quiz-selection").style.display = "block";
+        document.getElementById("quiz-container").classList.remove("active");
+        document.getElementById("results-container").classList.add("hidden");
+      }
+
+      function goBack() {
+        resetQuiz();
+      }
+
+      // Create stars background
+      function createStars() {
+        const starsContainer = document.getElementById("stars");
+        const starsCount = 200;
+
+        for (let i = 0; i < starsCount; i++) {
+          const star = document.createElement("div");
+          star.classList.add("star");
+
+          const x = Math.random() * 100;
+          const y = Math.random() * 100;
+          const size = Math.random() * 3;
+          const duration = Math.random() * 5 + 5;
+
+          star.style.left = `${x}%`;
+          star.style.top = `${y}%`;
+          star.style.width = `${size}px`;
+          star.style.height = `${size}px`;
+          star.style.setProperty("--duration", `${duration}s`);
+
+          starsContainer.appendChild(star);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", createStars);
+    </script>
+  </body>
+</html>
+
