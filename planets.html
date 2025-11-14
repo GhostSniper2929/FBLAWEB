@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planets - AstroLearn</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap");
+
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: #000;
+        color: #fff;
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+      }
+
+      .orbitron {
+        font-family: "Orbitron", sans-serif;
+      }
+
+      .section-card {
+        transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .section-card:hover {
+        transform: translateY(-10px) scale(1.01);
+        box-shadow: 0 15px 35px rgba(0, 150, 255, 0.4);
+      }
+
+      .spacex-blue {
+        color: #005288;
+      }
+
+      .btn-spacex {
+        background: linear-gradient(90deg, #005288 0%, #0078d4 100%);
+        transition: all 0.3s ease;
+      }
+
+      .btn-spacex:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 120, 212, 0.4);
+      }
+
+      .stars {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      .star {
+        position: absolute;
+        background-color: #fff;
+        border-radius: 50%;
+        animation: twinkle var(--duration) infinite ease-in-out;
+      }
+
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.2;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      .planet-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .planet-card:hover {
+        transform: translateY(-8px);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Stars Background -->
+    <div class="stars" id="stars"></div>
+
+    <!-- Navigation -->
+    <nav
+      class="fixed w-full z-50 bg-transparent bg-opacity-30 backdrop-filter backdrop-blur-lg border-b border-gray-800"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <a href="/" class="orbitron text-2xl font-bold text-white">ASTROLEARN</a>
+            </div>
+          </div>
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-8">
+              <a
+                href="/planets.html"
+                class="text-blue-400 px-3 py-2 text-sm font-medium transition duration-300"
+                >PLANETS</a
+              >
+              <a
+                href="/constellations.html"
+                class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300"
+                >CONSTELLATIONS</a
+              >
+              <a
+                href="/missions.html"
+                class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300"
+                >MISSIONS</a
+              >
+              <a
+                href="/quizzes.html"
+                class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300"
+                >QUIZZES</a
+              >
+              <a
+                href="/auth.html"
+                class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300"
+                >SIGN IN</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-32 pb-16 px-4 text-center">
+      <h1 class="orbitron text-5xl md:text-7xl font-bold mb-4">
+        THE <span class="spacex-blue">SOLAR SYSTEM</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+        Explore the eight planets that orbit our Sun. Learn about their unique
+        characteristics, atmospheres, and place in our cosmic neighborhood.
+      </p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Mercury -->
+        <div class="section-card planet-card rounded-xl p-6">
+          <div class="text-center mb-4">
+            <i class="fas fa-circle text-orange-400 text-6xl"></i>
+          </div>
+          <h3 class="orbitron text-2xl font-bold mb-3">MERCURY</h3>
+          <p class="text-gray-300 text-sm mb-4">
+            The smallest planet and closest to the Sun. Surface temperatures
+            range from -290°F to 800°F.
+          </p>
+          <div class="text-xs text-gray-400 space-y-1">
+            <p><strong>Distance from Sun:</strong> 36 million miles</p>
+            <p><strong>Day Length:</strong> 59 Earth days</p>
+            <p><strong>Year Length:</strong> 88 Earth days</p>
+            <p><strong>Moons:</strong> 0</p>
+          </div>
+        </div>
+
+        <!-- Venus -->
+        <div class="section-card planet-card rounded-xl p-6">
+          <div class="text-center mb-4">
+            <i class="fas fa-circle text-yellow-300 text-6xl"></i>
+          </div>
+          <h3 class="orbitron text-2xl font-bold mb-3">VENUS</h3>
+          <p class="text-gray-300 text-sm mb-4">
+            The hottest planet with a thick, toxic atmosphere. Known as Earth's
+            twin due to similar size.
+          </p>
+          <div class="text-xs text-gray-400 space-y-1">
+            <p><strong>Distance from Sun:</strong> 67 million miles</p>
+            <p><strong>Day Length:</strong> 243 Earth days</p>
+            <p><strong>Year Length:</strong> 225 Earth days</p>
+            <p><strong>Moons:</strong> 0</p>
+          </div>
+        </div>
+
+        <!-- Earth -->
+        <div class="section-card planet-card rounded-xl p-6">
+          <div class="text-center mb-4">
+            <i class="fas fa-globe text-blue-500 text-6xl"></i>
+          </div>
+          <h3 class="orbitron text-2xl font-bold mb-3">EARTH</h3>
+          <p class="text-gray-300 text-sm mb-4">
+            Our home planet. The only known world with life. Has liquid water
+            and a protective atmosphere.
+          </p>
+          <div class="text-xs text-gray-400 space-y-1">
+            <p><strong>Distance from Sun:</strong> 93 million miles</p>
+            <p><strong>Day Length:</strong> 24 hours</p>
+            <p><strong>Year Length:</strong> 365.25 days</p>
+            <p><strong>Moons:</strong> 1 (The Moon)</p>
+          </div>
+        </div>
+
+        <!-- Mars -->
+        <div class="section-card planet-card rounded-xl p-6">
+          <div class="text-center mb-4">
+            <i class="fas fa-circle text-red-500 text-6xl"></i>
+          </div>
+          <h3 class="orbitron text-2xl font-bold mb-3">MARS</h3>
+          <p class="text-gray-300 text-sm mb-4">
+            The Red Planet. Has the largest volcano in the solar system and
+            evidence of ancient water.
+          </p>
+          <div class="text-xs text-gray-400 space-y-1">
+            <p><strong>Distance from Sun:</strong> 142 million miles</p>
+            <p><strong>Day Length:</strong> 24.6 hours</p>
+            <p><strong>Year Length:</strong> 687 Earth days</p>
+            <p><strong>Moons:</strong> 2 (Phobos, Deimos)</p>
+          </div>
+        </div>
+
+        <!-- Jupiter -->
+        <div class="section-card planet-card rounded-xl p-6">
+          <div class="text-center mb-4">
+            <i class="fas fa-circle text-orange-300 text-6xl"></i>
+          </div>
+          <h3 class="orbitron text-2xl font-bold mb-3">JUPITER</h3>
+          <p class="text-gray-300 text-sm mb-4">
+            The largest planet. A gas giant with a Great Red Spot storm and
+            over 90 moons.
+          </p>
+          <div class="text-xs text-gray-400 space-y-1">
+            <p><strong>Distance from Sun:</strong> 484 million miles</p>
+            <p><strong>Day Length:</strong> 10 hours</p>
+            <p><strong>Year Length:</strong> 12 Earth years</p>
+            <p><strong>Moons:</strong> 95+ (Io, Europa, Ganymede, Callisto)</p>
+          </div>
+        </div>
+
+        <!-- Saturn -->
+        <div class="section-card planet-card rounded-xl p-6">
+          <div class="text-center mb-4">
+            <i class="fas fa-circle text-yellow-200 text-6xl"></i>
+          </div>
+          <h3 class="orbitron text-2xl font-bold mb-3">SATURN</h3>
+          <p class="text-gray-300 text-sm mb-4">
+            Known for its spectacular rings made of ice and rock. Less dense
+            than water - it would float!
+          </p>
+          <div class="text-xs text-gray-400 space-y-1">
+            <p><strong>Distance from Sun:</strong> 886 million miles</p>
+            <p><strong>Day Length:</strong> 10.7 hours</p>
+            <p><strong>Year Length:</strong> 29 Earth years</p>
+            <p><strong>Moons:</strong> 146+ (Titan, Enceladus)</p>
+          </div>
+        </div>
+
+        <!-- Uranus -->
+        <div class="section-card planet-card rounded-xl p-6">
+          <div class="text-center mb-4">
+            <i class="fas fa-circle text-cyan-300 text-6xl"></i>
+          </div>
+          <h3 class="orbitron text-2xl font-bold mb-3">URANUS</h3>
+          <p class="text-gray-300 text-sm mb-4">
+            An ice giant that rotates on its side. Has faint rings and a
+            methane-rich atmosphere.
+          </p>
+          <div class="text-xs text-gray-400 space-y-1">
+            <p><strong>Distance from Sun:</strong> 1.8 billion miles</p>
+            <p><strong>Day Length:</strong> 17 hours</p>
+            <p><strong>Year Length:</strong> 84 Earth years</p>
+            <p><strong>Moons:</strong> 27 (Miranda, Titania, Oberon)</p>
+          </div>
+        </div>
+
+        <!-- Neptune -->
+        <div class="section-card planet-card rounded-xl p-6">
+          <div class="text-center mb-4">
+            <i class="fas fa-circle text-blue-400 text-6xl"></i>
+          </div>
+          <h3 class="orbitron text-2xl font-bold mb-3">NEPTUNE</h3>
+          <p class="text-gray-300 text-sm mb-4">
+            The windiest planet with speeds up to 1,200 mph. Deep blue color
+            from methane in atmosphere.
+          </p>
+          <div class="text-xs text-gray-400 space-y-1">
+            <p><strong>Distance from Sun:</strong> 2.8 billion miles</p>
+            <p><strong>Day Length:</strong> 16 hours</p>
+            <p><strong>Year Length:</strong> 165 Earth years</p>
+            <p><strong>Moons:</strong> 16 (Triton)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Info Section -->
+      <section class="mt-20">
+        <div class="section-card rounded-xl p-8 md:p-10">
+          <h2 class="orbitron text-3xl md:text-4xl font-bold mb-6 text-center">
+            PLANET <span class="spacex-blue">CATEGORIES</span>
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h3 class="orbitron text-xl font-bold mb-4 text-blue-400">
+                TERRESTRIAL PLANETS
+              </h3>
+              <p class="text-gray-300 mb-3">
+                Mercury, Venus, Earth, and Mars are rocky planets with solid
+                surfaces. They have similar internal structures with a core,
+                mantle, and crust.
+              </p>
+              <ul class="text-gray-400 space-y-2 list-disc list-inside">
+                <li>Dense, rocky composition</li>
+                <li>Solid surfaces</li>
+                <li>Thinner atmospheres (except Venus)</li>
+                <li>Fewer or no moons</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="orbitron text-xl font-bold mb-4 text-blue-400">
+                GAS GIANTS & ICE GIANTS
+              </h3>
+              <p class="text-gray-300 mb-3">
+                Jupiter and Saturn are gas giants, while Uranus and Neptune are
+                ice giants. They have no solid surfaces and are much larger than
+                terrestrial planets.
+              </p>
+              <ul class="text-gray-400 space-y-2 list-disc list-inside">
+                <li>No solid surface</li>
+                <li>Thick atmospheres</li>
+                <li>Many moons and ring systems</li>
+                <li>Extreme pressures and temperatures</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black bg-opacity-90 border-t border-gray-800 py-12 mt-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center text-gray-500 text-sm">
+          <p>&copy; 2025 AstroLearn. All rights reserved.</p>
+          <a href="/" class="text-blue-400 hover:text-blue-300 mt-4 inline-block"
+            >Back to Home</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Create stars background
+      function createStars() {
+        const starsContainer = document.getElementById("stars");
+        const starsCount = 200;
+
+        for (let i = 0; i < starsCount; i++) {
+          const star = document.createElement("div");
+          star.classList.add("star");
+
+          const x = Math.random() * 100;
+          const y = Math.random() * 100;
+          const size = Math.random() * 3;
+          const duration = Math.random() * 5 + 5;
+
+          star.style.left = `${x}%`;
+          star.style.top = `${y}%`;
+          star.style.width = `${size}px`;
+          star.style.height = `${size}px`;
+          star.style.setProperty("--duration", `${duration}s`);
+
+          starsContainer.appendChild(star);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", createStars);
+    </script>
+  </body>
+</html>
+

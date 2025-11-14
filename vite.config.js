@@ -1,7 +1,18 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  // Serve static HTML files
+  build: {
+    rollupOptions: {
+      input: {
+        main: './index.html',
+        planets: './planets.html',
+        constellations: './constellations.html',
+        missions: './missions.html',
+        quizzes: './quizzes.html',
+        auth: './auth.html',
+      }
+    }
+  }
 })

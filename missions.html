@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Space Missions - AstroLearn</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap");
+
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: #000;
+        color: #fff;
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+      }
+
+      .orbitron {
+        font-family: "Orbitron", sans-serif;
+      }
+
+      .section-card {
+        transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .section-card:hover {
+        transform: translateY(-10px) scale(1.01);
+        box-shadow: 0 15px 35px rgba(0, 150, 255, 0.4);
+      }
+
+      .spacex-blue {
+        color: #005288;
+      }
+
+      .btn-spacex {
+        background: linear-gradient(90deg, #005288 0%, #0078d4 100%);
+        transition: all 0.3s ease;
+      }
+
+      .btn-spacex:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 120, 212, 0.4);
+      }
+
+      .stars {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      .star {
+        position: absolute;
+        background-color: #fff;
+        border-radius: 50%;
+        animation: twinkle var(--duration) infinite ease-in-out;
+      }
+
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.2;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      .mission-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .mission-card:hover {
+        transform: translateY(-8px);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Stars Background -->
+    <div class="stars" id="stars"></div>
+
+    <!-- Navigation -->
+    <nav
+      class="fixed w-full z-50 bg-transparent bg-opacity-30 backdrop-filter backdrop-blur-lg border-b border-gray-800"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <a href="/" class="orbitron text-2xl font-bold text-white">ASTROLEARN</a>
+            </div>
+          </div>
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-8">
+              <a
+                href="/planets.html"
+                class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300"
+                >PLANETS</a
+              >
+              <a
+                href="/constellations.html"
+                class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300"
+                >CONSTELLATIONS</a
+              >
+              <a
+                href="/missions.html"
+                class="text-blue-400 px-3 py-2 text-sm font-medium transition duration-300"
+                >MISSIONS</a
+              >
+              <a
+                href="/quizzes.html"
+                class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300"
+                >QUIZZES</a
+              >
+              <a
+                href="/auth.html"
+                class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300"
+                >SIGN IN</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-32 pb-16 px-4 text-center">
+      <h1 class="orbitron text-5xl md:text-7xl font-bold mb-4">
+        HISTORIC <span class="spacex-blue">SPACE MISSIONS</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+        Explore groundbreaking missions that have expanded our understanding
+        of the universe. From the Moon to Mars and beyond, discover humanity's
+        journey to the stars.
+      </p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Apollo 11 -->
+        <div class="section-card mission-card rounded-xl p-6">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-moon text-yellow-300 text-4xl mr-4"></i>
+            <h3 class="orbitron text-2xl font-bold">APOLLO 11</h3>
+          </div>
+          <p class="text-gray-300 mb-4">
+            The first mission to land humans on the Moon. On July 20, 1969,
+            Neil Armstrong and Buzz Aldrin became the first humans to set foot
+            on another world.
+          </p>
+          <div class="text-sm text-gray-400 space-y-2">
+            <p><strong>Date:</strong> July 16-24, 1969</p>
+            <p><strong>Destination:</strong> Moon</p>
+            <p><strong>Crew:</strong> Neil Armstrong, Buzz Aldrin, Michael Collins</p>
+            <p><strong>Key Achievement:</strong> First human moon landing</p>
+            <p><strong>Quote:</strong> "That's one small step for man, one giant leap for mankind."</p>
+          </div>
+        </div>
+
+        <!-- Voyager -->
+        <div class="section-card mission-card rounded-xl p-6">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-satellite text-blue-400 text-4xl mr-4"></i>
+            <h3 class="orbitron text-2xl font-bold">VOYAGER 1 & 2</h3>
+          </div>
+          <p class="text-gray-300 mb-4">
+            Twin spacecraft launched in 1977 to explore the outer planets.
+            Voyager 1 is now the most distant human-made object, traveling
+            in interstellar space.
+          </p>
+          <div class="text-sm text-gray-400 space-y-2">
+            <p><strong>Launch:</strong> August & September 1977</p>
+            <p><strong>Destination:</strong> Outer Solar System & Beyond</p>
+            <p><strong>Key Achievement:</strong> First to visit all four gas giants</p>
+            <p><strong>Status:</strong> Still transmitting from interstellar space</p>
+            <p><strong>Distance:</strong> Over 14 billion miles from Earth</p>
+          </div>
+        </div>
+
+        <!-- James Webb Space Telescope -->
+        <div class="section-card mission-card rounded-xl p-6">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-telescope text-purple-400 text-4xl mr-4"></i>
+            <h3 class="orbitron text-2xl font-bold">JAMES WEBB SPACE TELESCOPE</h3>
+          </div>
+          <p class="text-gray-300 mb-4">
+            The most powerful space telescope ever built. Launched in 2021,
+            it peers into the early universe and studies exoplanets with
+            unprecedented detail.
+          </p>
+          <div class="text-sm text-gray-400 space-y-2">
+            <p><strong>Launch:</strong> December 25, 2021</p>
+            <p><strong>Location:</strong> Lagrange Point 2 (1 million miles from Earth)</p>
+            <p><strong>Key Achievement:</strong> Seeing first galaxies and stars</p>
+            <p><strong>Capability:</strong> Infrared astronomy, exoplanet atmospheres</p>
+            <p><strong>Mirror Size:</strong> 21.3 feet (6.5 meters) in diameter</p>
+          </div>
+        </div>
+
+        <!-- Mars Rovers -->
+        <div class="section-card mission-card rounded-xl p-6">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-robot text-red-500 text-4xl mr-4"></i>
+            <h3 class="orbitron text-2xl font-bold">MARS ROVERS</h3>
+          </div>
+          <p class="text-gray-300 mb-4">
+            Multiple robotic missions exploring the Red Planet. From Sojourner
+            to Perseverance, these rovers have revolutionized our understanding
+            of Mars.
+          </p>
+          <div class="text-sm text-gray-400 space-y-2">
+            <p><strong>Active Rovers:</strong> Curiosity (2012), Perseverance (2021)</p>
+            <p><strong>Key Findings:</strong> Evidence of ancient water, organic molecules</p>
+            <p><strong>Perseverance:</strong> Collecting samples for future return to Earth</p>
+            <p><strong>Ingenuity:</strong> First powered flight on another planet</p>
+            <p><strong>Goal:</strong> Search for signs of past life on Mars</p>
+          </div>
+        </div>
+
+        <!-- Hubble Space Telescope -->
+        <div class="section-card mission-card rounded-xl p-6">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-eye text-cyan-400 text-4xl mr-4"></i>
+            <h3 class="orbitron text-2xl font-bold">HUBBLE SPACE TELESCOPE</h3>
+          </div>
+          <p class="text-gray-300 mb-4">
+            Launched in 1990, Hubble has transformed our view of the cosmos.
+            Despite an initial mirror flaw, it has captured stunning images
+            and made groundbreaking discoveries.
+          </p>
+          <div class="text-sm text-gray-400 space-y-2">
+            <p><strong>Launch:</strong> April 24, 1990</p>
+            <p><strong>Location:</strong> Low Earth Orbit (340 miles high)</p>
+            <p><strong>Key Discoveries:</strong> Dark energy, age of universe, exoplanets</p>
+            <p><strong>Images:</strong> Over 1.5 million observations</p>
+            <p><strong>Status:</strong> Still operational after 30+ years</p>
+          </div>
+        </div>
+
+        <!-- International Space Station -->
+        <div class="section-card mission-card rounded-xl p-6">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-space-station-moon text-green-400 text-4xl mr-4"></i>
+            <h3 class="orbitron text-2xl font-bold">INTERNATIONAL SPACE STATION</h3>
+          </div>
+          <p class="text-gray-300 mb-4">
+            A collaborative effort between 15 nations, the ISS is a
+            microgravity laboratory orbiting Earth. Continuously inhabited
+            since November 2000.
+          </p>
+          <div class="text-sm text-gray-400 space-y-2">
+            <p><strong>First Module:</strong> November 1998</p>
+            <p><strong>Orbit:</strong> 250 miles above Earth</p>
+            <p><strong>Speed:</strong> 17,500 mph (orbits Earth every 90 minutes)</p>
+            <p><strong>Crew:</strong> Typically 6-7 astronauts from multiple countries</p>
+            <p><strong>Purpose:</strong> Research in microgravity, Earth observation</p>
+          </div>
+        </div>
+
+        <!-- Parker Solar Probe -->
+        <div class="section-card mission-card rounded-xl p-6">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-sun text-orange-500 text-4xl mr-4"></i>
+            <h3 class="orbitron text-2xl font-bold">PARKER SOLAR PROBE</h3>
+          </div>
+          <p class="text-gray-300 mb-4">
+            The first mission to "touch" the Sun. Launched in 2018, it's
+            studying the solar corona and solar wind up close.
+          </p>
+          <div class="text-sm text-gray-400 space-y-2">
+            <p><strong>Launch:</strong> August 12, 2018</p>
+            <p><strong>Closest Approach:</strong> 3.83 million miles from Sun's surface</p>
+            <p><strong>Speed:</strong> Fastest human-made object (430,000 mph)</p>
+            <p><strong>Goal:</strong> Understand solar wind and corona heating</p>
+            <p><strong>Heat Shield:</strong> Withstands temperatures up to 2,500°F</p>
+          </div>
+        </div>
+
+        <!-- New Horizons -->
+        <div class="section-card mission-card rounded-xl p-6">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-snowflake text-blue-300 text-4xl mr-4"></i>
+            <h3 class="orbitron text-2xl font-bold">NEW HORIZONS</h3>
+          </div>
+          <p class="text-gray-300 mb-4">
+            First mission to Pluto and the Kuiper Belt. Launched in 2006,
+            it revealed Pluto as a complex, active world with mountains,
+            glaciers, and a thin atmosphere.
+          </p>
+          <div class="text-sm text-gray-400 space-y-2">
+            <p><strong>Launch:</strong> January 19, 2006</p>
+            <p><strong>Pluto Flyby:</strong> July 14, 2015</p>
+            <p><strong>Key Discovery:</strong> Active geology on Pluto</p>
+            <p><strong>Beyond Pluto:</strong> Exploring Kuiper Belt objects</p>
+            <p><strong>Images:</strong> Highest resolution photos of Pluto ever taken</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mission Timeline -->
+      <section class="mt-20">
+        <div class="section-card rounded-xl p-8 md:p-10">
+          <h2 class="orbitron text-3xl md:text-4xl font-bold mb-6 text-center">
+            SPACE EXPLORATION <span class="spacex-blue">TIMELINE</span>
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h3 class="orbitron text-xl font-bold mb-4 text-blue-400">
+                1950s - 1970s: THE SPACE RACE
+              </h3>
+              <ul class="text-gray-300 space-y-3 text-sm">
+                <li><strong>1957:</strong> Sputnik 1 - First artificial satellite</li>
+                <li><strong>1961:</strong> Yuri Gagarin - First human in space</li>
+                <li><strong>1969:</strong> Apollo 11 - First moon landing</li>
+                <li><strong>1972:</strong> Apollo 17 - Last human moon mission</li>
+                <li><strong>1977:</strong> Voyager missions launched</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="orbitron text-xl font-bold mb-4 text-blue-400">
+                1980s - 2000s: SHUTTLE & STATIONS
+              </h3>
+              <ul class="text-gray-300 space-y-3 text-sm">
+                <li><strong>1981:</strong> Space Shuttle Columbia first flight</li>
+                <li><strong>1990:</strong> Hubble Space Telescope launched</li>
+                <li><strong>1998:</strong> ISS construction begins</li>
+                <li><strong>2000:</strong> ISS permanently occupied</li>
+                <li><strong>2004:</strong> Spirit & Opportunity land on Mars</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="orbitron text-xl font-bold mb-4 text-blue-400">
+                2010s - PRESENT: NEW HORIZONS
+              </h3>
+              <ul class="text-gray-300 space-y-3 text-sm">
+                <li><strong>2012:</strong> Curiosity rover lands on Mars</li>
+                <li><strong>2015:</strong> New Horizons visits Pluto</li>
+                <li><strong>2018:</strong> Parker Solar Probe launched</li>
+                <li><strong>2021:</strong> James Webb Space Telescope launched</li>
+                <li><strong>2021:</strong> Perseverance rover & Ingenuity on Mars</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="orbitron text-xl font-bold mb-4 text-blue-400">
+                FUTURE MISSIONS
+              </h3>
+              <ul class="text-gray-300 space-y-3 text-sm">
+                <li><strong>2024+:</strong> Artemis - Return to the Moon</li>
+                <li><strong>2030s:</strong> Human missions to Mars</li>
+                <li><strong>Ongoing:</strong> Exoplanet discovery & study</li>
+                <li><strong>Future:</strong> Europa Clipper to Jupiter's moon</li>
+                <li><strong>Future:</strong> Sample return from Mars</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black bg-opacity-90 border-t border-gray-800 py-12 mt-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center text-gray-500 text-sm">
+          <p>&copy; 2025 AstroLearn. All rights reserved.</p>
+          <a href="/" class="text-blue-400 hover:text-blue-300 mt-4 inline-block"
+            >Back to Home</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Create stars background
+      function createStars() {
+        const starsContainer = document.getElementById("stars");
+        const starsCount = 200;
+
+        for (let i = 0; i < starsCount; i++) {
+          const star = document.createElement("div");
+          star.classList.add("star");
+
+          const x = Math.random() * 100;
+          const y = Math.random() * 100;
+          const size = Math.random() * 3;
+          const duration = Math.random() * 5 + 5;
+
+          star.style.left = `${x}%`;
+          star.style.top = `${y}%`;
+          star.style.width = `${size}px`;
+          star.style.height = `${size}px`;
+          star.style.setProperty("--duration", `${duration}s`);
+
+          starsContainer.appendChild(star);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", createStars);
+    </script>
+  </body>
+</html>
+
