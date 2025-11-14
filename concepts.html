@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Concepts - AstroLearn</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap");
+      body { font-family: "Roboto", sans-serif; background-color: #000; color: #fff; scroll-behavior: smooth; }
+      .orbitron { font-family: "Orbitron", sans-serif; }
+      .spacex-blue { color: #005288; }
+      .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+      .star { position: absolute; background-color: #fff; border-radius: 50%; animation: twinkle var(--duration) infinite ease-in-out; }
+      @keyframes twinkle { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
+      .concept-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 2rem; margin-bottom: 1.5rem; transition: all 0.3s ease; cursor: pointer; }
+      .concept-card:hover { background: rgba(255, 255, 255, 0.08); transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0, 150, 255, 0.3); }
+      .concept-content { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+      .concept-card.active .concept-content { display: block; }
+    </style>
+  </head>
+  <body>
+    <div class="stars" id="stars"></div>
+    <nav class="fixed w-full z-50 bg-transparent bg-opacity-30 backdrop-filter backdrop-blur-lg border-b border-gray-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+          <div class="flex items-center"><a href="/" class="orbitron text-2xl font-bold text-white">ASTROLEARN</a></div>
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-4">
+              <a href="/topics.html" class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium">TOPICS</a>
+              <a href="/concepts.html" class="text-blue-400 px-3 py-2 text-sm font-medium">CONCEPTS</a>
+              <a href="/planets.html" class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium">PLANETS</a>
+              <a href="/constellations.html" class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium">CONSTELLATIONS</a>
+              <a href="/missions.html" class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium">MISSIONS</a>
+              <a href="/quizzes.html" class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium">QUIZZES</a>
+              <a href="/glossary.html" class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium">GLOSSARY</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <header class="relative pt-32 pb-16 px-4 text-center">
+      <h1 class="orbitron text-5xl md:text-7xl font-bold mb-4">ASTRONOMY <span class="spacex-blue">CONCEPTS</span></h1>
+      <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">Explore key astronomy concepts. Click on any concept to expand and learn more.</p>
+    </header>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="concept-card" onclick="this.classList.toggle('active')">
+        <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-grav mr-2"></i>Gravity and Orbits</h2>
+        <p class="text-gray-300">Understand how gravity shapes the cosmos</p>
+        <div class="concept-content">
+          <p class="text-gray-300 mb-4">Gravity is the force of attraction between all masses. Newton's law of universal gravitation states that every object attracts every other object with a force proportional to their masses and inversely proportional to the square of the distance between them.</p>
+          <p class="text-gray-300 mb-4">Kepler's laws describe planetary motion: (1) Planets orbit in ellipses with the Sun at one focus, (2) A line joining a planet and Sun sweeps equal areas in equal times, (3) The square of orbital period is proportional to cube of semi-major axis. Einstein's general relativity refined our understanding, showing gravity as spacetime curvature.</p>
+        </div>
+      </div>
+      <div class="concept-card" onclick="this.classList.toggle('active')">
+        <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-sun mr-2"></i>Nuclear Fusion</h2>
+        <p class="text-gray-300">How stars produce energy</p>
+        <div class="concept-content">
+          <p class="text-gray-300 mb-4">Nuclear fusion is the process where atomic nuclei combine to form heavier nuclei, releasing enormous energy. In stars like our Sun, hydrogen nuclei (protons) fuse to form helium through the proton-proton chain reaction.</p>
+          <p class="text-gray-300 mb-4">Fusion requires extreme temperatures (millions of degrees) and pressures. The Sun's core at 15 million K enables fusion. Mass-energy equivalence (E=mc²) explains the enormous energy release - a tiny amount of mass converts to vast energy. This process powers stars for billions of years.</p>
+        </div>
+      </div>
+      <div class="concept-card" onclick="this.classList.toggle('active')">
+        <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-wave-square mr-2"></i>Electromagnetic Spectrum</h2>
+        <p class="text-gray-300">Understanding light and radiation</p>
+        <div class="concept-content">
+          <p class="text-gray-300 mb-4">The electromagnetic spectrum includes all forms of electromagnetic radiation, from gamma rays (highest energy, shortest wavelength) to radio waves (lowest energy, longest wavelength). Visible light is a small portion between infrared and ultraviolet.</p>
+          <p class="text-gray-300 mb-4">Different wavelengths reveal different information: X-rays show high-energy processes, visible light shows composition, infrared shows temperature, radio waves reveal magnetic fields. Astronomers use the full spectrum - ground telescopes observe visible/radio/infrared, while space telescopes capture X-rays, gamma rays, and ultraviolet blocked by Earth's atmosphere.</p>
+        </div>
+      </div>
+      <div class="concept-card" onclick="this.classList.toggle('active')">
+        <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-expand-arrows-alt mr-2"></i>The Expanding Universe</h2>
+        <p class="text-gray-300">How we discovered cosmic expansion</p>
+        <div class="concept-content">
+          <p class="text-gray-300 mb-4">Edwin Hubble discovered in 1929 that galaxies are moving away from us, with more distant galaxies receding faster. This observation led to the Big Bang theory. The universe began 13.8 billion years ago from an extremely hot, dense state.</p>
+          <p class="text-gray-300 mb-4">Redshift occurs when light from receding objects stretches to longer wavelengths. The Hubble constant measures expansion rate. Dark energy, discovered in the 1990s, is causing acceleration of this expansion. The universe's fate depends on the balance between expansion and gravity.</p>
+        </div>
+      </div>
+      <div class="concept-card" onclick="this.classList.toggle('active')">
+        <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-balance-scale mr-2"></i>Light Years and Distance</h2>
+        <p class="text-gray-300">Measuring vast cosmic distances</p>
+        <div class="concept-content">
+          <p class="text-gray-300 mb-4">A light-year is the distance light travels in one year - about 9.46 trillion kilometers. Because light takes time to travel, observing distant objects shows them as they were in the past. We see the Sun as it was 8 minutes ago, nearby stars as decades or centuries ago.</p>
+          <p class="text-gray-300 mb-4">Distance measurement methods include parallax for nearby stars, standard candles (like Cepheid variables) for galaxies, and redshift for very distant objects. The observable universe extends about 46.5 billion light-years in all directions, limited by the age of the universe and speed of light.</p>
+        </div>
+      </div>
+      <div class="concept-card" onclick="this.classList.toggle('active')">
+        <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-clock mr-2"></i>Time and Relativity</h2>
+        <p class="text-gray-300">How time behaves in space</p>
+        <div class="concept-content">
+          <p class="text-gray-300 mb-4">Einstein's special relativity shows that time is relative - it passes at different rates depending on speed and gravity. Time dilation means fast-moving clocks run slower. GPS satellites must account for this effect to maintain accuracy.</p>
+          <p class="text-gray-300 mb-4">General relativity explains gravity as spacetime curvature. Massive objects warp spacetime, affecting time's passage. Near black holes, time slows dramatically. The theory successfully predicts phenomena like gravitational waves and light bending around massive objects.</p>
+        </div>
+      </div>
+      <div class="concept-card" onclick="this.classList.toggle('active')">
+        <h2 class="orbitron text-2xl font-bold mb-2 text-blue-400"><i class="fas fa-search mr-2"></i>Exoplanet Detection Methods</h2>
+        <p class="text-gray-300">How we find planets around other stars</p>
+        <div class="concept-content">
+          <p class="text-gray-300 mb-4">The transit method detects exoplanets when they pass in front of their star, causing periodic dimming. The radial velocity method detects stellar wobble caused by planetary gravitational pull. Direct imaging captures exoplanet light directly, though very challenging.</p>
+          <p class="text-gray-300 mb-4">Gravitational microlensing detects planets by their effect on light from background stars. Astrometry measures precise star positions. Each method has strengths - transit finds many planets, radial velocity determines masses, direct imaging can study atmospheres.</p>
+        </div>
+      </div>
+    </main>
+    <footer class="bg-black bg-opacity-90 border-t border-gray-800 py-12 mt-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
+        <p>&copy; 2025 AstroLearn. All rights reserved.</p>
+        <a href="/" class="text-blue-400 hover:text-blue-300 mt-4 inline-block">Back to Home</a>
+      </div>
+    </footer>
+    <script>
+      function createStars() {
+        const starsContainer = document.getElementById("stars");
+        for (let i = 0; i < 200; i++) {
+          const star = document.createElement("div");
+          star.classList.add("star");
+          star.style.left = `${Math.random() * 100}%`;
+          star.style.top = `${Math.random() * 100}%`;
+          star.style.width = `${Math.random() * 3}px`;
+          star.style.height = star.style.width;
+          star.style.setProperty("--duration", `${Math.random() * 5 + 5}s`);
+          starsContainer.appendChild(star);
+        }
+      }
+      document.addEventListener("DOMContentLoaded", createStars);
+    </script>
+  </body>
+</html>
+

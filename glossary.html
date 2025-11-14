@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Glossary - AstroLearn</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap");
+
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: #000;
+        color: #fff;
+        scroll-behavior: smooth;
+      }
+
+      .orbitron {
+        font-family: "Orbitron", sans-serif;
+      }
+
+      .spacex-blue {
+        color: #005288;
+      }
+
+      .stars {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      .star {
+        position: absolute;
+        background-color: #fff;
+        border-radius: 50%;
+        animation: twinkle var(--duration) infinite ease-in-out;
+      }
+
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.2;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      .glossary-item {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .glossary-item:hover {
+        background: rgba(255, 255, 255, 0.08);
+        transform: translateX(5px);
+      }
+
+      .glossary-term {
+        font-weight: bold;
+        color: #0096ff;
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .glossary-definition {
+        color: #ccc;
+        display: none;
+        margin-top: 0.5rem;
+        padding-top: 0.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .glossary-item.active .glossary-definition {
+        display: block;
+      }
+
+      .alphabet-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: center;
+        margin: 2rem 0;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+      }
+
+      .alphabet-nav a {
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        background: rgba(0, 150, 255, 0.2);
+        color: #fff;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .alphabet-nav a:hover {
+        background: rgba(0, 150, 255, 0.4);
+        transform: scale(1.1);
+      }
+
+      .search-box {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        padding: 1rem;
+        width: 100%;
+        max-width: 600px;
+        margin: 2rem auto;
+        color: #fff;
+      }
+
+      .search-box:focus {
+        outline: none;
+        border-color: #0096ff;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Stars Background -->
+    <div class="stars" id="stars"></div>
+
+    <!-- Navigation -->
+    <nav
+      class="fixed w-full z-50 bg-transparent bg-opacity-30 backdrop-filter backdrop-blur-lg border-b border-gray-800"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <a href="/" class="orbitron text-2xl font-bold text-white">ASTROLEARN</a>
+            </div>
+          </div>
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-6">
+              <a href="/topics.html" class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300">TOPICS</a>
+              <a href="/concepts.html" class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300">CONCEPTS</a>
+              <a href="/planets.html" class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300">PLANETS</a>
+              <a href="/constellations.html" class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300">CONSTELLATIONS</a>
+              <a href="/missions.html" class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300">MISSIONS</a>
+              <a href="/quizzes.html" class="text-white hover:text-blue-400 px-3 py-2 text-sm font-medium transition duration-300">QUIZZES</a>
+              <a href="/glossary.html" class="text-blue-400 px-3 py-2 text-sm font-medium transition duration-300">GLOSSARY</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-32 pb-16 px-4 text-center">
+      <h1 class="orbitron text-5xl md:text-7xl font-bold mb-4">
+        ASTRONOMY <span class="spacex-blue">GLOSSARY</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+        Click on any term to expand and learn more. Search or browse alphabetically
+        to find definitions of astronomy and space science terms.
+      </p>
+    </header>
+
+    <!-- Search Box -->
+    <div class="max-w-7xl mx-auto px-4">
+      <input
+        type="text"
+        id="search-input"
+        class="search-box"
+        placeholder="Search for astronomy terms..."
+      />
+    </div>
+
+    <!-- Alphabet Navigation -->
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="alphabet-nav">
+        <a href="#A">A</a>
+        <a href="#B">B</a>
+        <a href="#C">C</a>
+        <a href="#D">D</a>
+        <a href="#E">E</a>
+        <a href="#F">F</a>
+        <a href="#G">G</a>
+        <a href="#H">H</a>
+        <a href="#I">I</a>
+        <a href="#J">J</a>
+        <a href="#K">K</a>
+        <a href="#L">L</a>
+        <a href="#M">M</a>
+        <a href="#N">N</a>
+        <a href="#O">O</a>
+        <a href="#P">P</a>
+        <a href="#Q">Q</a>
+        <a href="#R">R</a>
+        <a href="#S">S</a>
+        <a href="#T">T</a>
+        <a href="#U">U</a>
+        <a href="#V">V</a>
+        <a href="#W">W</a>
+        <a href="#X">X</a>
+        <a href="#Y">Y</a>
+        <a href="#Z">Z</a>
+      </div>
+    </div>
+
+    <!-- Glossary Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16" id="glossary-container">
+      <!-- A -->
+      <h2 id="A" class="orbitron text-3xl font-bold mb-6 mt-8 text-blue-400">A</h2>
+      <div class="glossary-item" data-term="asteroid">
+        <div class="glossary-term">Asteroid</div>
+        <div class="glossary-definition">
+          A small rocky body orbiting the Sun. Most asteroids are found in the asteroid belt between Mars and Jupiter. They range in size from tiny pebbles to objects hundreds of kilometers across.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="astronaut">
+        <div class="glossary-term">Astronaut</div>
+        <div class="glossary-definition">
+          A person trained to travel and work in space. Astronauts conduct experiments, maintain spacecraft, and perform spacewalks outside their vehicles.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="astronomy">
+        <div class="glossary-term">Astronomy</div>
+        <div class="glossary-definition">
+          The scientific study of celestial objects, space, and the physical universe beyond Earth's atmosphere. It includes the study of stars, planets, galaxies, and cosmology.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="astrophysics">
+        <div class="glossary-term">Astrophysics</div>
+        <div class="glossary-definition">
+          The branch of astronomy that studies the physics of the universe, including the physical properties of celestial objects, their interactions, and the laws that govern them.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="atmosphere">
+        <div class="glossary-term">Atmosphere</div>
+        <div class="glossary-definition">
+          The layer of gases surrounding a planet or other celestial body. Earth's atmosphere protects life by absorbing ultraviolet radiation and maintaining temperature.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="aurora">
+        <div class="glossary-term">Aurora</div>
+        <div class="glossary-definition">
+          A natural light display in the sky caused by charged particles from the Sun interacting with Earth's magnetic field. Known as Aurora Borealis (Northern Lights) or Aurora Australis (Southern Lights).
+        </div>
+      </div>
+      <div class="glossary-item" data-term="axis">
+        <div class="glossary-term">Axis</div>
+        <div class="glossary-definition">
+          An imaginary line through the center of a celestial body around which it rotates. Earth's axis is tilted at 23.5 degrees, causing seasons.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="apogee">
+        <div class="glossary-term">Apogee</div>
+        <div class="glossary-definition">
+          The point in an orbit where a satellite is farthest from Earth. The opposite of perigee.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="aphelion">
+        <div class="glossary-term">Aphelion</div>
+        <div class="glossary-definition">
+          The point in a planet's orbit when it is farthest from the Sun. Earth reaches aphelion in early July.
+        </div>
+      </div>
+
+      <!-- B -->
+      <h2 id="B" class="orbitron text-3xl font-bold mb-6 mt-8 text-blue-400">B</h2>
+      <div class="glossary-item" data-term="big bang">
+        <div class="glossary-term">Big Bang</div>
+        <div class="glossary-definition">
+          The prevailing cosmological model explaining how the universe began approximately 13.8 billion years ago from an extremely hot and dense state, then expanded and cooled to form stars and galaxies.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="black hole">
+        <div class="glossary-term">Black Hole</div>
+        <div class="glossary-definition">
+          A region of spacetime where gravity is so strong that nothing, not even light, can escape. Formed when massive stars collapse at the end of their lives.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="binary star">
+        <div class="glossary-term">Binary Star</div>
+        <div class="glossary-definition">
+          A system of two stars that orbit around a common center of mass. Many stars in the universe exist in binary or multiple star systems.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="bolide">
+        <div class="glossary-term">Bolide</div>
+        <div class="glossary-definition">
+          An extremely bright meteor that explodes in the atmosphere. Also known as a fireball.
+        </div>
+      </div>
+
+      <!-- C -->
+      <h2 id="C" class="orbitron text-3xl font-bold mb-6 mt-8 text-blue-400">C</h2>
+      <div class="glossary-item" data-term="comet">
+        <div class="glossary-term">Comet</div>
+        <div class="glossary-definition">
+          An icy body that orbits the Sun and develops a glowing coma and tail when it approaches the Sun. Comets are remnants from the formation of the solar system.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="constellation">
+        <div class="glossary-term">Constellation</div>
+        <div class="glossary-definition">
+          A group of stars that form a recognizable pattern in the night sky. There are 88 official constellations recognized by the International Astronomical Union.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="cosmos">
+        <div class="glossary-term">Cosmos</div>
+        <div class="glossary-definition">
+          The universe regarded as an orderly, harmonious whole. The entire physical universe including all matter, energy, space, and time.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="cosmology">
+        <div class="glossary-term">Cosmology</div>
+        <div class="glossary-definition">
+          The study of the origin, evolution, and eventual fate of the universe. It combines astronomy and physics to understand the universe on its largest scales.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="crater">
+        <div class="glossary-term">Crater</div>
+        <div class="glossary-definition">
+          A bowl-shaped depression formed by the impact of a meteorite, asteroid, or comet, or by volcanic activity. The Moon's surface is covered with impact craters.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="celestial sphere">
+        <div class="glossary-term">Celestial Sphere</div>
+        <div class="glossary-definition">
+          An imaginary sphere of infinite radius surrounding Earth, used to map the apparent positions of stars and planets. All celestial objects appear to lie on this sphere.
+        </div>
+      </div>
+
+      <!-- D -->
+      <h2 id="D" class="orbitron text-3xl font-bold mb-6 mt-8 text-blue-400">D</h2>
+      <div class="glossary-item" data-term="dwarf planet">
+        <div class="glossary-term">Dwarf Planet</div>
+        <div class="glossary-definition">
+          A celestial body that orbits the Sun, is nearly round, but has not cleared its orbital neighborhood of other objects. Pluto, Ceres, and Eris are dwarf planets.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="dark matter">
+        <div class="glossary-term">Dark Matter</div>
+        <div class="glossary-definition">
+          A hypothetical form of matter that does not emit, absorb, or reflect light, but makes up about 27% of the universe's mass-energy. Its presence is inferred from gravitational effects.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="dark energy">
+        <div class="glossary-term">Dark Energy</div>
+        <div class="glossary-definition">
+          A mysterious force causing the expansion of the universe to accelerate. It makes up about 68% of the universe's mass-energy.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="declination">
+        <div class="glossary-term">Declination</div>
+        <div class="glossary-definition">
+          The angular distance of a celestial object north or south of the celestial equator, measured in degrees. Similar to latitude on Earth.
+        </div>
+      </div>
+
+      <!-- E -->
+      <h2 id="E" class="orbitron text-3xl font-bold mb-6 mt-8 text-blue-400">E</h2>
+      <div class="glossary-item" data-term="eclipse">
+        <div class="glossary-term">Eclipse</div>
+        <div class="glossary-definition">
+          An event where one celestial body moves into the shadow of another. A solar eclipse occurs when the Moon passes between Earth and the Sun, and a lunar eclipse when Earth's shadow falls on the Moon.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="eccentricity">
+        <div class="glossary-term">Eccentricity</div>
+        <div class="glossary-definition">
+          A measure of how much an orbit deviates from a perfect circle. Eccentricity ranges from 0 (perfect circle) to 1 (parabola). Earth's orbit has low eccentricity (0.017).
+        </div>
+      </div>
+      <div class="glossary-item" data-term="equinox">
+        <div class="glossary-term">Equinox</div>
+        <div class="glossary-definition">
+          The two times each year when day and night are approximately equal in length. Occurs around March 20-21 (vernal equinox) and September 22-23 (autumnal equinox).
+        </div>
+      </div>
+      <div class="glossary-item" data-term="exoplanet">
+        <div class="glossary-term">Exoplanet</div>
+        <div class="glossary-definition">
+          A planet that orbits a star outside our solar system. Thousands of exoplanets have been discovered, some potentially habitable.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="event horizon">
+        <div class="glossary-term">Event Horizon</div>
+        <div class="glossary-definition">
+          The boundary around a black hole beyond which nothing can escape, not even light. It marks the point of no return.
+        </div>
+      </div>
+
+      <!-- F -->
+      <h2 id="F" class="orbitron text-3xl font-bold mb-6 mt-8 text-blue-400">F</h2>
+      <div class="glossary-item" data-term="full moon">
+        <div class="glossary-term">Full Moon</div>
+        <div class="glossary-definition">
+          The lunar phase when the Moon appears fully illuminated from Earth's perspective. Occurs when Earth is between the Sun and the Moon.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="fusion">
+        <div class="glossary-term">Fusion</div>
+        <div class="glossary-definition">
+          The process by which atomic nuclei combine to form heavier nuclei, releasing enormous amounts of energy. This powers stars, including our Sun.
+        </div>
+      </div>
+
+      <!-- G -->
+      <h2 id="G" class="orbitron text-3xl font-bold mb-6 mt-8 text-blue-400">G</h2>
+      <div class="glossary-item" data-term="galaxy">
+        <div class="glossary-term">Galaxy</div>
+        <div class="glossary-definition">
+          A massive system of stars, gas, dust, and dark matter bound together by gravity. Our Milky Way galaxy contains billions of stars.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="gas giant">
+        <div class="glossary-term">Gas Giant</div>
+        <div class="glossary-definition">
+          A large planet composed primarily of hydrogen and helium. Jupiter and Saturn are gas giants in our solar system.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="gravity">
+        <div class="glossary-term">Gravity</div>
+        <div class="glossary-definition">
+          The force of attraction between objects with mass. It keeps planets in orbit around the Sun and holds galaxies together.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="greenhouse effect">
+        <div class="glossary-term">Greenhouse Effect</div>
+        <div class="glossary-definition">
+          The process by which radiation from a planet's surface is absorbed by atmospheric gases and re-radiated back, warming the planet. Essential for life on Earth but can be enhanced by human activity.
+        </div>
+      </div>
+
+      <!-- H -->
+      <h2 id="H" class="orbitron text-3xl font-bold mb-6 mt-8 text-blue-400">H</h2>
+      <div class="glossary-item" data-term="habitable zone">
+        <div class="glossary-term">Habitable Zone</div>
+        <div class="glossary-definition">
+          The region around a star where conditions might be right for liquid water to exist on a planet's surface, potentially allowing life to develop. Also called the Goldilocks zone.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="hemisphere">
+        <div class="glossary-term">Hemisphere</div>
+        <div class="glossary-definition">
+          Half of a sphere. Earth can be divided into Northern and Southern Hemispheres or Eastern and Western Hemispheres.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="hubble constant">
+        <div class="glossary-term">Hubble Constant</div>
+        <div class="glossary-definition">
+          A value that describes the rate of expansion of the universe. Named after Edwin Hubble, who discovered that galaxies are moving away from us.
+        </div>
+      </div>
+
+      <!-- I -->
+      <h2 id="I" class="orbitron text-3xl font-bold mb-6 mt-8 text-blue-400">I</h2>
+      <div class="glossary-item" data-term="inferior planet">
+        <div class="glossary-term">Inferior Planet</div>
+        <div class="glossary-definition">
+          A planet that orbits closer to the Sun than Earth does. Mercury and Venus are inferior planets.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="ionosphere">
+        <div class="glossary-term">Ionosphere</div>
+        <div class="glossary-definition">
+          A layer of Earth's atmosphere that contains ions and free electrons, extending from about 50 to 1,000 km above the surface. Reflects radio waves.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="iridium flare">
+        <div class="glossary-term">Iridium Flare</div>
+        <div class="glossary-definition">
+          A bright flash of light reflected from Iridium communication satellites. These flares can be brighter than Venus and last a few seconds.
+        </div>
+      </div>
+
+      <!-- J -->
+      <h2 id="J" class="orbitron text-3xl font-bold mb-6 mt-8 text-blue-400">J</h2>
+      <div class="glossary-item" data-term="jovian planet">
+        <div class="glossary-term">Jovian Planet</div>
+        <div class="glossary-definition">
+          A gas giant planet similar to Jupiter. Refers to the outer planets Jupiter, Saturn, Uranus, and Neptune, which share similar characteristics.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="julian calendar">
+        <div class="glossary-term">Julian Calendar</div>
+        <div class="glossary-definition">
+          A calendar system introduced by Julius Caesar in 46 BCE. It was replaced by the Gregorian calendar but is still used in astronomy for certain calculations.
+        </div>
+      </div>
+
+      <!-- K -->
+      <h2 id="K" class="orbitron text-3xl font-bold mb-6 mt-8 text-blue-400">K</h2>
+      <div class="glossary-item" data-term="kepler's laws">
+        <div class="glossary-term">Kepler's Laws</div>
+        <div class="glossary-definition">
+          Three laws describing planetary motion: (1) Planets orbit in ellipses with the Sun at one focus, (2) A line joining a planet and the Sun sweeps equal areas in equal times, (3) The square of the orbital period is proportional to the cube of the semi-major axis.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="kiloparsec">
+        <div class="glossary-term">Kiloparsec</div>
+        <div class="glossary-definition">
+          A unit of distance equal to 1,000 parsecs or about 3,260 light-years. Used to measure distances within galaxies.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="kuiper belt">
+        <div class="glossary-term">Kuiper Belt</div>
+        <div class="glossary-definition">
+          A region of the solar system beyond Neptune containing many small icy bodies, including Pluto. Similar to the asteroid belt but much larger and composed of frozen volatiles.
+        </div>
+      </div>
+
+      <!-- L -->
+      <h2 id="L" class="orbitron text-3xl font-bold mb-6 mt-8 text-blue-400">L</h2>
+      <div class="glossary-item" data-term="light year">
+        <div class="glossary-term">Light Year</div>
+        <div class="glossary-definition">
+          The distance light travels in one year, approximately 9.46 trillion kilometers (5.88 trillion miles). Used to measure vast distances in space.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="lunar">
+        <div class="glossary-term">Lunar</div>
+        <div class="glossary-definition">
+          Relating to the Moon. Lunar phases, lunar eclipses, and lunar missions all refer to Moon-related phenomena.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="luminosity">
+        <div class="glossary-term">Luminosity</div>
+        <div class="glossary-definition">
+          The total amount of energy a star radiates per unit of time. It depends on both the star's size and temperature.
+        </div>
+      </div>
+
+      <!-- M -->
+      <h2 id="M" class="orbitron text-3xl font-bold mb-6 mt-8 text-blue-400">M</h2>
+      <div class="glossary-item" data-term="meteor">
+        <div class="glossary-term">Meteor</div>
+        <div class="glossary-definition">
+          The streak of light seen when a meteoroid enters Earth's atmosphere and burns up. Often called a "shooting star."
+        </div>
+      </div>
+      <div class="glossary-item" data-term="meteorite">
+        <div class="glossary-term">Meteorite</div>
+        <div class="glossary-definition">
+          A fragment of rock or metal from space that survives passage through Earth's atmosphere and lands on the surface.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="meteoroid">
+        <div class="glossary-term">Meteoroid</div>
+        <div class="glossary-definition">
+          A small particle from a comet or asteroid, smaller than an asteroid but larger than a molecule. When it enters Earth's atmosphere, it becomes a meteor.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="milky way">
+        <div class="glossary-term">Milky Way</div>
+        <div class="glossary-definition">
+          The galaxy containing our solar system. It appears as a band of light in the night sky and contains hundreds of billions of stars.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="magnitude">
+        <div class="glossary-term">Magnitude</div>
+        <div class="glossary-definition">
+          A measure of a star's brightness. Lower numbers indicate brighter stars. The brightest stars are magnitude 1 or 0, and the faintest visible to the naked eye are about magnitude 6.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="mars">
+        <div class="glossary-term">Mars</div>
+        <div class="glossary-definition">
+          The fourth planet from the Sun, known as the Red Planet due to iron oxide on its surface. Has the largest volcano in the solar system and evidence of ancient water.
+        </div>
+      </div>
+
+      <!-- N -->
+      <h2 id="N" class="orbitron text-3xl font-bold mb-6 mt-8 text-blue-400">N</h2>
+      <div class="glossary-item" data-term="nebula">
+        <div class="glossary-term">Nebula</div>
+        <div class="glossary-definition">
+          A vast cloud of gas and dust in space. Nebulae are stellar nurseries where stars form, or remnants of dying stars.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="neutron star">
+        <div class="glossary-term">Neutron Star</div>
+        <div class="glossary-definition">
+          The extremely dense core left behind after a massive star explodes as a supernova. One teaspoon of neutron star material would weigh billions of tons on Earth.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="new moon">
+        <div class="glossary-term">New Moon</div>
+        <div class="glossary-definition">
+          The lunar phase when the Moon is between Earth and the Sun, making it invisible from Earth because the side facing us is not illuminated.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="nova">
+        <div class="glossary-term">Nova</div>
+        <div class="glossary-definition">
+          A star that suddenly increases greatly in brightness due to an explosion on its surface, then fades back to normal over weeks or months.
+        </div>
+      </div>
+
+      <!-- O -->
+      <h2 id="O" class="orbitron text-3xl font-bold mb-6 mt-8 text-blue-400">O</h2>
+      <div class="glossary-item" data-term="orbit">
+        <div class="glossary-term">Orbit</div>
+        <div class="glossary-definition">
+          The path a celestial object follows around another object due to gravity. Planets orbit stars, and moons orbit planets.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="observatory">
+        <div class="glossary-term">Observatory</div>
+        <div class="glossary-definition">
+          A location equipped with telescopes and other instruments for observing celestial objects. Can be ground-based or in space.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="occultation">
+        <div class="glossary-term">Occultation</div>
+        <div class="glossary-definition">
+          An event where one celestial object passes in front of another, temporarily blocking its view. For example, when the Moon passes in front of a star.
+        </div>
+      </div>
+
+      <!-- P -->
+      <h2 id="P" class="orbitron text-3xl font-bold mb-6 mt-8 text-blue-400">P</h2>
+      <div class="glossary-item" data-term="planet">
+        <div class="glossary-term">Planet</div>
+        <div class="glossary-definition">
+          A celestial body that orbits the Sun, is nearly round, has cleared its orbital neighborhood, and is not a moon. The eight planets in our solar system are Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="parallax">
+        <div class="glossary-term">Parallax</div>
+        <div class="glossary-definition">
+          The apparent shift in position of a nearby object when viewed from different locations. Used to measure distances to stars.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="parsec">
+        <div class="glossary-term">Parsec</div>
+        <div class="glossary-definition">
+          A unit of distance equal to about 3.26 light-years. One parsec is the distance at which one astronomical unit subtends an angle of one arcsecond.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="perihelion">
+        <div class="glossary-term">Perihelion</div>
+        <div class="glossary-definition">
+          The point in a planet's orbit when it is closest to the Sun. Earth reaches perihelion in early January.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="pulsar">
+        <div class="glossary-term">Pulsar</div>
+        <div class="glossary-definition">
+          A rapidly rotating neutron star that emits beams of radiation from its magnetic poles. When these beams sweep past Earth, we detect pulses of radiation.
+        </div>
+      </div>
+
+      <!-- Q -->
+      <h2 id="Q" class="orbitron text-3xl font-bold mb-6 mt-8 text-blue-400">Q</h2>
+      <div class="glossary-item" data-term="quasar">
+        <div class="glossary-term">Quasar</div>
+        <div class="glossary-definition">
+          An extremely luminous object powered by a supermassive black hole at the center of a galaxy. Quasars are among the brightest objects in the universe.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="quarter moon">
+        <div class="glossary-term">Quarter Moon</div>
+        <div class="glossary-definition">
+          A lunar phase when exactly half of the Moon is illuminated, as seen from Earth. Occurs at first quarter and last quarter.
+        </div>
+      </div>
+
+      <!-- R -->
+      <h2 id="R" class="orbitron text-3xl font-bold mb-6 mt-8 text-blue-400">R</h2>
+      <div class="glossary-item" data-term="red giant">
+        <div class="glossary-term">Red Giant</div>
+        <div class="glossary-definition">
+          A large, cool star in a late stage of stellar evolution. Our Sun will become a red giant in about 5 billion years.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="redshift">
+        <div class="glossary-term">Redshift</div>
+        <div class="glossary-definition">
+          The shift of light toward longer wavelengths, indicating that an object is moving away from the observer. Evidence for the expanding universe.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="right ascension">
+        <div class="glossary-term">Right Ascension</div>
+        <div class="glossary-definition">
+          The angular distance of a celestial object measured eastward along the celestial equator. Similar to longitude on Earth, measured in hours, minutes, and seconds.
+        </div>
+      </div>
+
+      <!-- S -->
+      <h2 id="S" class="orbitron text-3xl font-bold mb-6 mt-8 text-blue-400">S</h2>
+      <div class="glossary-item" data-term="solar system">
+        <div class="glossary-term">Solar System</div>
+        <div class="glossary-definition">
+          The collection of eight planets, moons, asteroids, comets, and other objects that orbit the Sun. Formed about 4.6 billion years ago.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="star">
+        <div class="glossary-term">Star</div>
+        <div class="glossary-definition">
+          A massive, luminous ball of plasma held together by gravity. Stars produce light and heat through nuclear fusion in their cores.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="supernova">
+        <div class="glossary-term">Supernova</div>
+        <div class="glossary-definition">
+          The explosive death of a massive star. One of the most energetic events in the universe, briefly outshining entire galaxies.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="solstice">
+        <div class="glossary-term">Solstice</div>
+        <div class="glossary-definition">
+          The two times each year when the Sun reaches its highest or lowest point in the sky. The summer solstice has the longest day, and the winter solstice has the shortest day.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="satellite">
+        <div class="glossary-term">Satellite</div>
+        <div class="glossary-definition">
+          An object that orbits a larger celestial body. Natural satellites include moons, while artificial satellites are human-made objects launched into orbit.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="solar wind">
+        <div class="glossary-term">Solar Wind</div>
+        <div class="glossary-definition">
+          A stream of charged particles released from the Sun's upper atmosphere. It extends throughout the solar system and interacts with planetary magnetospheres.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="space station">
+        <div class="glossary-term">Space Station</div>
+        <div class="glossary-definition">
+          A large artificial satellite designed for humans to live and work in space for extended periods. The International Space Station (ISS) is the largest space station.
+        </div>
+      </div>
+
+      <!-- T -->
+      <h2 id="T" class="orbitron text-3xl font-bold mb-6 mt-8 text-blue-400">T</h2>
+      <div class="glossary-item" data-term="telescope">
+        <div class="glossary-term">Telescope</div>
+        <div class="glossary-definition">
+          An instrument used to observe distant objects by collecting and focusing light or other forms of electromagnetic radiation. Can be optical, radio, or space-based.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="terrestrial planet">
+        <div class="glossary-term">Terrestrial Planet</div>
+        <div class="glossary-definition">
+          A rocky planet similar to Earth. The four terrestrial planets in our solar system are Mercury, Venus, Earth, and Mars.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="tide">
+        <div class="glossary-term">Tide</div>
+        <div class="glossary-definition">
+          The periodic rise and fall of sea level caused by the gravitational pull of the Moon and Sun on Earth's oceans.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="transit">
+        <div class="glossary-term">Transit</div>
+        <div class="glossary-definition">
+          An event where a smaller celestial body passes in front of a larger one. For example, when Mercury or Venus passes in front of the Sun as seen from Earth.
+        </div>
+      </div>
+
+      <!-- U -->
+      <h2 id="U" class="orbitron text-3xl font-bold mb-6 mt-8 text-blue-400">U</h2>
+      <div class="glossary-item" data-term="universe">
+        <div class="glossary-term">Universe</div>
+        <div class="glossary-definition">
+          All of space, time, matter, and energy, including all galaxies, stars, planets, and everything else that exists. The observable universe extends about 93 billion light-years in all directions.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="uranus">
+        <div class="glossary-term">Uranus</div>
+        <div class="glossary-definition">
+          The seventh planet from the Sun, an ice giant that rotates on its side. Has faint rings and a unique blue-green color due to methane in its atmosphere.
+        </div>
+      </div>
+
+      <!-- V -->
+      <h2 id="V" class="orbitron text-3xl font-bold mb-6 mt-8 text-blue-400">V</h2>
+      <div class="glossary-item" data-term="venus">
+        <div class="glossary-term">Venus</div>
+        <div class="glossary-definition">
+          The second planet from the Sun, known for its thick, toxic atmosphere and extreme surface temperatures. Often called Earth's twin due to similar size.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="vernal equinox">
+        <div class="glossary-term">Vernal Equinox</div>
+        <div class="glossary-definition">
+          The spring equinox in the Northern Hemisphere, occurring around March 20-21. Marks the beginning of spring and equal day/night length.
+        </div>
+      </div>
+
+      <!-- W -->
+      <h2 id="W" class="orbitron text-3xl font-bold mb-6 mt-8 text-blue-400">W</h2>
+      <div class="glossary-item" data-term="white dwarf">
+        <div class="glossary-term">White Dwarf</div>
+        <div class="glossary-definition">
+          The dense, Earth-sized remnant of a low-mass star that has exhausted its nuclear fuel. White dwarfs slowly cool over billions of years.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="waxing">
+        <div class="glossary-term">Waxing</div>
+        <div class="glossary-definition">
+          The period when the Moon's illuminated area is increasing, moving from new moon to full moon. The opposite of waning.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="waning">
+        <div class="glossary-term">Waning</div>
+        <div class="glossary-definition">
+          The period when the Moon's illuminated area is decreasing, moving from full moon to new moon. The opposite of waxing.
+        </div>
+      </div>
+
+      <!-- X -->
+      <h2 id="X" class="orbitron text-3xl font-bold mb-6 mt-8 text-blue-400">X</h2>
+      <div class="glossary-item" data-term="x-ray astronomy">
+        <div class="glossary-term">X-ray Astronomy</div>
+        <div class="glossary-definition">
+          The study of astronomical objects using X-ray radiation. Requires space-based telescopes since X-rays are blocked by Earth's atmosphere.
+        </div>
+      </div>
+
+      <!-- Y -->
+      <h2 id="Y" class="orbitron text-3xl font-bold mb-6 mt-8 text-blue-400">Y</h2>
+      <div class="glossary-item" data-term="year">
+        <div class="glossary-term">Year</div>
+        <div class="glossary-definition">
+          The time it takes for a planet to complete one orbit around its star. On Earth, one year equals approximately 365.25 days.
+        </div>
+      </div>
+
+      <!-- Z -->
+      <h2 id="Z" class="orbitron text-3xl font-bold mb-6 mt-8 text-blue-400">Z</h2>
+      <div class="glossary-item" data-term="zenith">
+        <div class="glossary-term">Zenith</div>
+        <div class="glossary-definition">
+          The point in the sky directly above an observer. The opposite of nadir, which is directly below.
+        </div>
+      </div>
+      <div class="glossary-item" data-term="zodiac">
+        <div class="glossary-term">Zodiac</div>
+        <div class="glossary-definition">
+          A band of the sky extending about 8 degrees on either side of the ecliptic, containing the apparent paths of the Sun, Moon, and planets. Divided into 12 constellations.
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black bg-opacity-90 border-t border-gray-800 py-12 mt-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
+        <p>&copy; 2025 AstroLearn. All rights reserved.</p>
+        <a href="/" class="text-blue-400 hover:text-blue-300 mt-4 inline-block">Back to Home</a>
+      </div>
+    </footer>
+
+    <script>
+      // Create stars background
+      function createStars() {
+        const starsContainer = document.getElementById("stars");
+        const starsCount = 200;
+
+        for (let i = 0; i < starsCount; i++) {
+          const star = document.createElement("div");
+          star.classList.add("star");
+
+          const x = Math.random() * 100;
+          const y = Math.random() * 100;
+          const size = Math.random() * 3;
+          const duration = Math.random() * 5 + 5;
+
+          star.style.left = `${x}%`;
+          star.style.top = `${y}%`;
+          star.style.width = `${size}px`;
+          star.style.height = `${size}px`;
+          star.style.setProperty("--duration", `${duration}s`);
+
+          starsContainer.appendChild(star);
+        }
+      }
+
+      // Toggle glossary items
+      document.querySelectorAll('.glossary-item').forEach(item => {
+        item.addEventListener('click', function() {
+          this.classList.toggle('active');
+        });
+      });
+
+      // Search functionality
+      document.getElementById('search-input').addEventListener('input', function(e) {
+        const searchTerm = e.target.value.toLowerCase();
+        const items = document.querySelectorAll('.glossary-item');
+        
+        items.forEach(item => {
+          const term = item.getAttribute('data-term').toLowerCase();
+          const definition = item.textContent.toLowerCase();
+          
+          if (term.includes(searchTerm) || definition.includes(searchTerm)) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+
+        // Hide/show section headers based on visible items
+        document.querySelectorAll('h2').forEach(header => {
+          const sectionId = header.id;
+          const sectionItems = Array.from(items).filter(item => 
+            item.closest('main') && 
+            item.previousElementSibling === header || 
+            Array.from(header.parentElement.children)
+              .slice(Array.from(header.parentElement.children).indexOf(header) + 1)
+              .some(sibling => sibling === item)
+          );
+          
+          // Check if any items after this header are visible
+          let foundVisible = false;
+          let current = header.nextElementSibling;
+          while (current && current.tagName !== 'H2') {
+            if (current.classList.contains('glossary-item') && current.style.display !== 'none') {
+              foundVisible = true;
+              break;
+            }
+            current = current.nextElementSibling;
+          }
+          
+          if (foundVisible || searchTerm === '') {
+            header.style.display = 'block';
+          } else {
+            header.style.display = 'none';
+          }
+        });
+      });
+
+      // Smooth scroll for alphabet navigation
+      document.querySelectorAll('.alphabet-nav a').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const target = document.getElementById(targetId);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", createStars);
+    </script>
+  </body>
+</html>
+
