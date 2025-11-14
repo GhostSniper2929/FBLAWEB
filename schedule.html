@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Schedule — LUNEX</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500,700&display=swap");
+      body {
+        font-family: "Roboto", sans-serif;
+        background: #000;
+        color: #fff;
+      }
+      .orbitron {
+        font-family: "Orbitron", sans-serif;
+      }
+      .card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(6px);
+      }
+      .btn-primary {
+        background: linear-gradient(90deg, #005288 0%, #0078d4 100%);
+      }
+    </style>
+  </head>
+  <body>
+    <nav
+      class="fixed w-full z-40 bg-transparent bg-opacity-20 backdrop-filter backdrop-blur-lg border-b border-gray-800"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+          <div class="flex items-center">
+            <a href="index.html" class="orbitron text-xl font-bold">LUNEX</a>
+          </div>
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-6">
+              <a href="index.html" class="text-gray-200 hover:text-white"
+                >Home</a
+              >
+              <a
+                href="schedule.html"
+                class="text-white orbitron font-medium px-3 py-2 rounded-md"
+                >Schedule</a
+              >
+              <a href="auth.html" class="text-gray-200 hover:text-white"
+                >Register</a
+              >
+            </div>
+          </div>
+          <div class="md:hidden">
+            <button id="menu-toggle" class="text-white focus:outline-none">
+              <i class="fas fa-bars"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-95">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <a href="index.html" class="text-white block px-3 py-2">Home</a>
+          <a href="schedule.html" class="text-white block px-3 py-2"
+            >Schedule</a
+          >
+          <a href="auth.html" class="text-white block px-3 py-2">Register</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="pt-28 pb-12 text-center">
+      <h1 class="orbitron text-4xl md:text-5xl font-bold">
+        Live Tutoring & Group Study
+      </h1>
+      <p class="text-gray-300 mt-3 max-w-2xl mx-auto">
+        Join scheduled live tutoring sessions or collaborative group study
+        events. Reserve a seat or create a group.
+      </p>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 pb-24">
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+        <div class="card rounded-lg p-6">
+          <h2 class="orbitron text-2xl font-semibold mb-4">
+            Upcoming Tutoring Sessions
+          </h2>
+          <p class="text-gray-400 mb-4">
+            One-on-one or small-group tutoring led by experienced mentors.
+          </p>
+          <div id="tutoring-list" class="space-y-4"></div>
+        </div>
+
+        <div class="card rounded-lg p-6">
+          <h2 class="orbitron text-2xl font-semibold mb-4">
+            Group Study Opportunities
+          </h2>
+          <p class="text-gray-400 mb-4">
+            Join study groups organized by topic and level.
+          </p>
+          <div id="group-list" class="space-y-4"></div>
+        </div>
+      </section>
+
+      <section class="card rounded-lg p-6">
+        <h3 class="orbitron text-xl font-semibold mb-3">How it works</h3>
+        <ul class="list-disc list-inside text-gray-300">
+          <li>Browse sessions and group study events below.</li>
+          <li>Click "Reserve" to sign up — seats are limited.</li>
+          <li>
+            You'll receive a mock confirmation (this is a static demo unless API
+            running).
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="text-center text-gray-400 py-8">&copy; 2025 LUNEX</footer>
+
+    <script>
+      // Mobile menu toggle
+      document
+        .getElementById("menu-toggle")
+        .addEventListener("click", function () {
+          document.getElementById("mobile-menu").classList.toggle("hidden");
+        });
+
+      // DOM refs
+      const tutoringList = document.getElementById("tutoring-list");
+      const groupList = document.getElementById("group-list");
+
+      // Fallback demo data
+      const DEMO = {
+        tutoring: [
+          {
+            id: 1,
+            date: "Mon, Nov 17",
+            time: "6:00 PM",
+            topic: "Calculus — Integrals",
+            tutor: "Alex R.",
+            seats: 5,
+          },
+          {
+            id: 2,
+            date: "Tue, Nov 18",
+            time: "5:00 PM",
+            topic: "AP Computer Science",
+            tutor: "Sam L.",
+            seats: 3,
+          },
+          {
+            id: 3,
+            date: "Wed, Nov 19",
+            time: "7:30 PM",
+            topic: "Physics — Kinematics",
+            tutor: "Dr. Chen",
+            seats: 8,
+          },
+        ],
+        groups: [
+          {
+            id: 101,
+            date: "Thu, Nov 20",
+            time: "4:30 PM",
+            topic: "SAT Math Practice",
+            leader: "Jordan",
+            spots: 12,
+          },
+          {
+            id: 102,
+            date: "Fri, Nov 21",
+            time: "3:00 PM",
+            topic: "History Discussion — Cold War",
+            leader: "Priya",
+            spots: 10,
+          },
+        ],
+      };
+
+      async function fetchSessions() {
+        try {
+          const res = await fetch("/api/sessions");
+          if (!res.ok) throw new Error("API not OK");
+          return await res.json();
+        } catch (e) {
+          return DEMO;
+        }
+      }
+
+      function createTutoringCard(s) {
+        const container = document.createElement("div");
+        container.className =
+          "flex items-center justify-between p-3 rounded-md border border-gray-800";
+
+        const left = document.createElement("div");
+        const title = document.createElement("div");
+        title.className = "font-semibold";
+        title.textContent = s.topic;
+        const meta = document.createElement("div");
+        meta.className = "text-sm text-gray-400";
+        meta.textContent = `${s.date} · ${s.time} · Tutor: ${s.tutor}`;
+        left.appendChild(title);
+        left.appendChild(meta);
+
+        const right = document.createElement("div");
+        right.className = "text-right";
+        const seats = document.createElement("div");
+        seats.className = "text-sm text-gray-300 mb-2";
+        seats.innerHTML = `Seats: <span id="seat-${s.id}">${s.seats}</span>`;
+        const btn = document.createElement("button");
+        btn.className = "btn-primary px-4 py-2 rounded text-white";
+        btn.textContent = "Reserve";
+        btn.addEventListener("click", () =>
+          reserveTutoring(s.id, seats.querySelector("span"))
+        );
+
+        right.appendChild(seats);
+        right.appendChild(btn);
+        container.appendChild(left);
+        container.appendChild(right);
+        return container;
+      }
+
+      function createGroupCard(g) {
+        const container = document.createElement("div");
+        container.className =
+          "flex items-center justify-between p-3 rounded-md border border-gray-800";
+
+        const left = document.createElement("div");
+        const title = document.createElement("div");
+        title.className = "font-semibold";
+        title.textContent = g.topic;
+        const meta = document.createElement("div");
+        meta.className = "text-sm text-gray-400";
+        meta.textContent = `${g.date} · ${g.time} · Leader: ${g.leader}`;
+        left.appendChild(title);
+        left.appendChild(meta);
+
+        const right = document.createElement("div");
+        right.className = "text-right";
+        const spots = document.createElement("div");
+        spots.className = "text-sm text-gray-300 mb-2";
+        spots.innerHTML = `Spots: <span id="spot-${g.id}">${g.spots}</span>`;
+        const btn = document.createElement("button");
+        btn.className =
+          "bg-transparent border border-white px-4 py-2 rounded text-white";
+        btn.textContent = "Join";
+        btn.addEventListener("click", () =>
+          joinGroup(g.id, spots.querySelector("span"))
+        );
+
+        right.appendChild(spots);
+        right.appendChild(btn);
+        container.appendChild(left);
+        container.appendChild(right);
+        return container;
+      }
+
+      async function render() {
+        const data = await fetchSessions();
+        tutoringList.innerHTML = "";
+        groupList.innerHTML = "";
+        data.tutoring.forEach((s) =>
+          tutoringList.appendChild(createTutoringCard(s))
+        );
+        data.groups.forEach((g) => groupList.appendChild(createGroupCard(g)));
+      }
+
+      async function reserveTutoring(id, seatSpan) {
+        const name = prompt("Enter your name to reserve a seat:");
+        if (!name) return;
+        try {
+          const res = await fetch("/api/reserve", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id, name }),
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || "Failed");
+          seatSpan.textContent = data.item.seats;
+          alert(
+            `Reserved!\n${data.item.topic}\n${data.item.date} · ${data.item.time}\nReserved for: ${name}`
+          );
+        } catch (e) {
+          // fallback: update DOM if demo
+          const span = seatSpan;
+          const curr = parseInt(span.textContent || "0", 10);
+          if (curr > 0) {
+            span.textContent = curr - 1;
+            alert("Reserved locally (offline demo)");
+          } else alert("Reservation failed: " + e.message);
+        }
+      }
+
+      async function joinGroup(id, spotSpan) {
+        const name = prompt("Enter your name to join group:");
+        if (!name) return;
+        try {
+          const res = await fetch("/api/join", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id, name }),
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || "Failed");
+          spotSpan.textContent = data.item.spots;
+          alert(
+            `You're in!\n${data.item.topic}\n${data.item.date} · ${data.item.time}\nJoined as: ${name}`
+          );
+        } catch (e) {
+          const span = spotSpan;
+          const curr = parseInt(span.textContent || "0", 10);
+          if (curr > 0) {
+            span.textContent = curr - 1;
+            alert("Joined locally (offline demo)");
+          } else alert("Join failed: " + e.message);
+        }
+      }
+
+      // initial render
+      render();
+    </script>
+  </body>
+</html>

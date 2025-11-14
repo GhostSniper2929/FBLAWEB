@@ -1,0 +1,46 @@
+{
+  "tutoring": [
+    {
+      "id": 1,
+      "date": "Mon, Nov 17",
+      "time": "6:00 PM",
+      "topic": "Calculus — Integrals",
+      "tutor": "Alex R.",
+      "seats": 4
+    },
+    {
+      "id": 2,
+      "date": "Tue, Nov 18",
+      "time": "5:00 PM",
+      "topic": "AP Computer Science",
+      "tutor": "Sam L.",
+      "seats": 3
+    },
+    {
+      "id": 3,
+      "date": "Wed, Nov 19",
+      "time": "7:30 PM",
+      "topic": "Physics — Kinematics",
+      "tutor": "Dr. Chen",
+      "seats": 8
+    }
+  ],
+  "groups": [
+    {
+      "id": 101,
+      "date": "Thu, Nov 20",
+      "time": "4:30 PM",
+      "topic": "SAT Math Practice",
+      "leader": "Jordan",
+      "spots": 12
+    },
+    {
+      "id": 102,
+      "date": "Fri, Nov 21",
+      "time": "3:00 PM",
+      "topic": "History Discussion — Cold War",
+      "leader": "Priya",
+      "spots": 10
+    }
+  ]
+}
